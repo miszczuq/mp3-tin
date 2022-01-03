@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="81c77631-1d07-477a-9c2b-08bec0ec0521" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/driver/driverDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/driver/driverDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apiCalls/driverApiCalls.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apiCalls/driverApiCalls.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/driver/driverDetailsData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/driver/driverDetailsData.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +41,7 @@
       <option name="presentableId" value="Default" />
       <updated>1639742747922</updated>
       <workItem from="1639742750436" duration="1823000" />
-      <workItem from="1641207619598" duration="1760000" />
+      <workItem from="1641207619598" duration="9985000" />
     </task>
     <servers />
   </component>

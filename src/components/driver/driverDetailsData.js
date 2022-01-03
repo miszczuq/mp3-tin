@@ -5,7 +5,7 @@ function DriverDetailsData(props){
     const driver = props.driverData
     return(
         <React.Fragment>
-            <p>Imie: {driver.firstName}</p>
+            <p>Imie: {driver.first_name}</p>
             <h2>Szczegóły okrażen</h2>
         </React.Fragment>
     )
