@@ -2,7 +2,7 @@ import React from 'react';
 import DriverListTableRow from './DriverListTableRow'
 
 function DriverListTable(props){
-    const drivers = props.fetchDriverList
+    const drivers = props.driverList
     return (
         <table className="table-list">
             <thead>

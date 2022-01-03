@@ -13,7 +13,7 @@ class DriverList extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            employees: []
+            drivers: []
         }
     }
 
@@ -53,7 +53,7 @@ class DriverList extends React.Component {
     //                         <ul className="list-actions">
     //                             <li><Link to={`/drivers/details/${driver.id}`}><i className="fas fa-info"></i></Link></li>
     //                             <li><Link to={`/drivers/edit/${driver.id}`}><i className="far fa-edit"></i></Link> </li>
-    //                             <li><Link to={`/drivers/delete/${driver.id}`} onclick="return confirm('Are you sure you want to delete this item?');"><i className="far fa-trash-alt"></i></Link> </li>
+    //                             <li><Link to={`/drivers/delete/${driver.id}`} onClick="return confirm('Are you sure you want to delete this item?');"><i className="far fa-trash-alt"></i></Link> </li>
     //                         </ul>
     //                     </td>
     //                 </tr>
@@ -102,7 +102,7 @@ class DriverList extends React.Component {
                 (data) => {
                     this.setState({
                         isLoaded: true,
-                        employees: data
+                        drivers: data
                     });
                 },
                 (error) => {
