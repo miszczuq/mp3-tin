@@ -2,41 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81c77631-1d07-477a-9c2b-08bec0ec0521" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/images/background.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/apiCalls/driverApiCalls.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/apiCalls/driverApiMockData.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/driver/DriverListTableRow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/driver/driverDetails.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/driver/driverDetailsData.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/driver/driverForm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/driver/driverList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/driver/driverListTable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/fragments/footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/fragments/header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/fragments/nav.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/mainPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/dateHelper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hello.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/driver/driverDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/driver/driverDetails.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="CSS File" />
-        <option value="JavaScript File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,17 +25,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../MP2/KartRacing" />
-    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\Szkola\5 semestr\TIN\Cwiczenia\MP3\mp3-tin\public\images" />
-    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -74,11 +40,7 @@
       <option name="presentableId" value="Default" />
       <updated>1639742747922</updated>
       <workItem from="1639742750436" duration="1823000" />
-      <workItem from="1639746481833" duration="1652000" />
-      <workItem from="1640895157642" duration="1979000" />
-      <workItem from="1640952143718" duration="6499000" />
-      <workItem from="1641158967608" duration="12887000" />
-      <workItem from="1641196958981" duration="6693000" />
+      <workItem from="1641207619598" duration="1760000" />
     </task>
     <servers />
   </component>
@@ -86,15 +48,6 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

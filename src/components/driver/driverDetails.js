@@ -1,80 +1,69 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+import {Link, useParams} from 'react-router-dom'
 import { getDriverByIdApiCall } from '../../apiCalls/driverApiCalls'
 import { getFormatedDate } from '../../helpers/dateHelper'
 import DriverDetailsData from "./driverDetailsData";
 
-class DriverDetails extends React.Component {
+function DriverDetails() {
+    //const {id} = useParams()
 
-    constructor(props){
-        super(props)
-        let { driverId } = props.match.params
-        this.state = {
-            driverId: driverId,
-            driver: null,
-            error: null,
-            isLoaded: false,
-            message:null
-        }
-    }
+    const [driverId, setDriverId] = useState(useParams())
+    const [driver, setDriver] = useState(null)
+    const [error, setError] = useState(null)
+    const [isLoaded, setIsLoaded] = useState(false)
+    const [message, setMessage] = useState(null)
 
-componentDidMount(){
-    this.fetchDriverDetails()
-}
+    useEffect(() => {
+        checkState();
+        checkDriverState();
+    }, [])
 
-fetchDriverDetails = () => {
-    getDriverByIdApiCall(this.state.driverId)
-        .then(res => res.json())
-        .then(
-            (data) => {
-                if(data.message){
-                    this.setState({
-                        driver: null,
-                        message: data.message
-                    })
-                }else{
-                    this.setState({
-                        driver: data,
-                        message: null
-                    })
-                }
-                this.setState({
-                    isLoaded: true
-                })
-            },
-            (error) => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                })
-            }
-        )
-}
-
-    render(){
-        const {driver, error, isLoaded, message} = this.state
+    const checkState = () => {
         let content;
 
-        if(error){
+        if (error) {
             content = <p>Błąd: {error.message}</p>
-        }else if(!isLoaded){
-            content= <p>Ladowanie danych pracownika</p>
-        }else if(message){
+        } else if (!isLoaded) {
+            content = <p>Ladowanie danych pracownika</p>
+        } else if (message) {
             content = <p>{message}</p>
-        }else{
+        } else {
             content = <DriverDetailsData driverData={driver}/>
         }
+
+        return content
+    }
+
+    const checkDriverState = () => {
+        getDriverByIdApiCall(driverId)
+            .then(res => res.json())
+            .then(
+                (data) => {
+                    if(data.message){
+                        setDriver(null);
+                        setMessage(data.message);
+                    }else{
+                        setDriver(data);
+                        setMessage(null);
+                    }
+                    setIsLoaded(true)
+                },
+                (error) => {
+                    setIsLoaded(true);
+                    setError(error);
+                }
+            )
+    }
 
         return(
             <main>
                 <h2>Szczegóły kierowcy</h2>
-                {content}
+                {checkState()}
                 <div className="section-buttons">
                     <Link to="/drivers" className="button-back">Powrót</Link>
                 </div>
             </main>
         )
     }
-}
 
 export default DriverDetails
