@@ -1,7 +1,7 @@
 import React from "react"
 
 import {
-    Link
+    NavLink
 } from 'react-router-dom'
 
 function Navigation(){
@@ -9,10 +9,10 @@ function Navigation(){
         <nav>
             <div className="nav-content">
                 <ul className="nav-list">
-                    <li><Link to="/" className="<%= navLocation === 'main' ? 'active' : ''%>">Strona główna</Link></li>
-                    <li><Link to="/drivers" className="<%= navLocation === 'driver' ? 'active' : ''%>">Kierowcy</Link></li>
-                    <li><Link to="/gokarts" className="<%= navLocation === 'gokart' ? 'active' : ''%>">Gokarty</Link></li>
-                    <li><Link to="/driverGokarts" className="<%= navLocation === 'driverGokart' ? 'active' : ''%>">Przejazdy</Link></li>
+                    <li><NavLink to="/" exact={true} activeClassName='active'> Strona główna</NavLink></li>
+                    <li><NavLink to="/drivers" exact={true} activeClassName='active'>Kierowcy</NavLink></li>
+                    <li><NavLink to="/gokarts" exact={true} activeClassName='active'>Gokarty</NavLink></li>
+                    <li><NavLink to="/driverGokarts" exact={true} activeClassName='active'>Przejazdy</NavLink></li>
                 </ul>
             </div>
         </nav>

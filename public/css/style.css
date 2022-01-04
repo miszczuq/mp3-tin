@@ -5,7 +5,11 @@ html {
     background-size: cover;
 }
 
-body {
+body{
+    margin: 0;
+}
+
+.master-container {
     min-height: 100vh;
     margin: 0;
     padding: 0;
@@ -521,7 +525,7 @@ nav {
     color: #ecf0f1;
 }
 
-nav .nav-list .active:before {
+nav .nav-content .nav-list .active:before {
 
     content: "";
     position: absolute;
@@ -607,7 +611,8 @@ nav .nav-list .active:before {
     nav ul,
     header,
     main,
-    footer{
+    footer,
+    .master-container{
         margin: 0;
     }
 
