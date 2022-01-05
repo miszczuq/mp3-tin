@@ -1,5 +1,5 @@
 import React from 'react';
-import DriverListTableRow from './DriverListTableRow'
+import DriverListTableRow from './driverListTableRow'
 
 function DriverListTable(props){
     const drivers = props.driverList

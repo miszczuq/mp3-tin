@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import {Link, useParams} from 'react-router-dom'
-import { getDriverByIdApiCall } from '../../apiCalls/driverApiCalls'
-import { getFormatedDate } from '../../helpers/dateHelper'
+import React, {useEffect, useState} from 'react'
+import {useParams} from 'react-router-dom'
+import {getDriverByIdApiCall} from '../../apiCalls/driverApiCalls'
 import DriverDetailsData from "./driverDetailsData";
 
 function DriverDetails() {
@@ -15,7 +14,7 @@ function DriverDetails() {
 
     useEffect(() => {
         checkState();
-        checkDriverState();
+        getDriverData();
     }, [])
 
     const checkState = () => {
@@ -34,15 +33,15 @@ function DriverDetails() {
         return content
     }
 
-    const checkDriverState = () => {
+    const getDriverData = () => {
         getDriverByIdApiCall(driverId)
             .then(res => res.json())
             .then(
                 (data) => {
-                    if(data.message){
+                    if (data.message) {
                         setDriver(null);
                         setMessage(data.message);
-                    }else{
+                    } else {
                         setDriver(data);
                         setMessage(null);
                     }
@@ -55,15 +54,15 @@ function DriverDetails() {
             )
     }
 
-        return(
-            <main>
-                <h2>Szczegóły kierowcy</h2>
-                {checkState()}
-                <div className="section-buttons">
-                    <Link to="/drivers" className="button-back">Powrót</Link>
-                </div>
-            </main>
-        )
-    }
+    return (
+        <main>
+            <h2>Szczegóły kierowcy</h2>
+            {checkState()}
+            <div className="form-buttons">
+                <a href="/drivers" className="form-button-details-back">Powrót</a>
+            </div>
+        </main>
+    )
+}
 
 export default DriverDetails
