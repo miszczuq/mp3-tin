@@ -1,70 +1,61 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {getDriverApiCall} from "../../apiCalls/driverApiCalls";
 import DriverListTable from "./driverListTable";
-
 import {Link} from 'react-router-dom'
 
-class DriverList extends React.Component {
+const DriverList = () => {
+    const [drivers, setDrivers] = useState([])
+    const [error, setError] = useState(null)
+    const [isLoaded, setIsLoaded] = useState(false)
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            error: null,
-            isLoaded: false,
-            drivers: []
-        }
-    }
+    useEffect(() => {
+        checkState();
+        getDriverData();
+    }, [])
 
-    render() {
-
-        const {error, isLoaded, drivers} = this.state
+    const checkState = () => {
         let content;
 
         if (error) {
             content = <p>Błąd: {error.message}</p>
         } else if (!isLoaded) {
-            content = <p>Ladowanie danych pracowników</p>
+            content = <p>Ladowanie danych kierowców</p>
         } else {
             content = <DriverListTable driverList={drivers}/>
         }
 
-        return (
-            <main>
-                <div className="main-content">
-                    <h2>Lista kierowców</h2>
-                    <div className="table-div">
-                        {content}
-                        <p className={"section-buttons"}>
-                            <Link to="/drivers/add" className="button-add">Dodaj nowego kierowcę</Link>
-                        </p>
-                    </div>
-                </div>
-            </main>
-        )
+        return content
     }
 
-    fetchDriverList = () => {
+    const getDriverData = () => {
         getDriverApiCall()
-            .then(res => res.json())
+            .then(res => res.data)
             .then(
                 (data) => {
-                    this.setState({
-                        isLoaded: true,
-                        drivers: data
-                    });
+                    setIsLoaded(true);
+                    setDrivers(data);
                 },
                 (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
+                    setIsLoaded(true);
+                    setError(error);
                 }
             )
     }
 
-    componentDidMount() {
-        this.fetchDriverList()
-    }
+    return (
+        <main>
+            <div className="main-content">
+                <h2>Lista kierowców</h2>
+                <div className="table-div">
+                    {checkState()}
+                    <p className={"section-buttons"}>
+                        <Link to="/drivers/add" className="button-add">Dodaj nowego kierowcę</Link>
+                    </p>
+                </div>
+            </div>
+        </main>
+    )
 }
+
 
 export default DriverList;

@@ -7,7 +7,7 @@ function DriverListTable(props){
             <table className="table-list driver">
                 <thead>
                     <tr>
-                        <th>Imię</th>
+                        <th>Imie</th>
                         <th>Nazwisko</th>
                         <th>Waga(kg)</th>
                         <th>Akcje</th>
