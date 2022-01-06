@@ -24,7 +24,7 @@ function DriverDetailsData(props) {
                             <tr key={lap.id}>
                                 <td>{lap.gokart.model+' '+lap.gokart.brand}</td>
                                 <td>{lap.lap_time}</td>
-                                <td>{lap.wet_track}</td>
+                                <td>{lap.wet_track ? "moka" : "sucha"}</td>
                             </tr>
                     )}
                     </tbody>

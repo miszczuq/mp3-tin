@@ -35,7 +35,7 @@ function DriverDetails() {
 
     const getDriverData = () => {
         getDriverByIdApiCall(driverId)
-            .then(res => res.json())
+            .then(res => res.data)
             .then(
                 (data) => {
                     if (data.message) {
