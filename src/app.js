@@ -9,6 +9,7 @@ import DriverForm from "./components/driver/driverForm";
 import GokartList from "./components/gokart/gokartList";
 
 import {BrowserRouter as Router, Route, Routes,} from 'react-router-dom'
+import DriverFormEdit from "./components/driver/driverFormEdit";
 
 function App() {
     return (
@@ -20,7 +21,8 @@ function App() {
                     <Route exact path="/drivers" element={<DriverList/>}/>
                     <Route exact path="/drivers/details/:driverId" element={<DriverDetails/>}/>
                     <Route exact path="/drivers/add" element={<DriverForm/>}/>
-                    <Route exact path="/drivers/add/:driverId" element={<DriverForm/>}/>
+                    <Route exact path="/drivers/edit/:driverId" element={<DriverFormEdit/>}/>
+
 
                     <Route exact path="/gokarts" element={<GokartList/>}/>
                     {/*<Route exact path="/gokarts/details/:gokartId" element={<GokartDetails/>}/>*/}

@@ -15,7 +15,6 @@ const DriverList = () => {
 
     const checkState = () => {
         let content;
-
         if (error) {
             content = <p>Błąd: {error.message}</p>
         } else if (!isLoaded) {
@@ -56,6 +55,5 @@ const DriverList = () => {
         </main>
     )
 }
-
 
 export default DriverList;

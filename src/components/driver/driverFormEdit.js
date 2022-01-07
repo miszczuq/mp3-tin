@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
 import * as fMode from "../../helpers/formHelper"
 
 import {getDriverByIdApiCall} from "../../apiCalls/driverApiCalls";
 import FormComponent from "./formComponent";
 
-function DriverForm() {
+function DriverFormEdit() {
     const [driverId, setDriverId] = useState(useParams())
     const [driver, setDriver] = useState(null)
     const [error, setError] = useState(null)
@@ -69,8 +69,10 @@ function DriverForm() {
     }
 
     return (
-        <FormComponent/>
+        <React.Fragment>
+            {driver ? (<FormComponent driver={driver} route={"/drivers/edit/"+driverId}/>) : <p>Ladowanie danych</p>}
+        </React.Fragment>
     )
 }
 
-export default DriverForm
+export default DriverFormEdit
