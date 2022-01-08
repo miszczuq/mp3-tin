@@ -1,0 +1,25 @@
+import React from 'react'
+import {Link} from 'react-router-dom'
+
+const ListTable = (props) => {
+    const parentRoute = props.params.parentRoute;
+    const header = props.params.header;
+    const buttonText = props.params.buttonText;
+    const table = props.content
+
+    return (
+        <main>
+            <div className="main-content">
+                <h2>{header}</h2>
+                <div className="table-div">
+                    {table}
+                    <p className={"section-buttons"}>
+                        <Link to={`${parentRoute}/add`} className="button-add">{buttonText}</Link>
+                    </p>
+                </div>
+            </div>
+        </main>
+    )
+}
+
+export default ListTable;

@@ -3,7 +3,7 @@ import Footer from "./components/fragments/footer";
 import MainPage from "./components/mainPage";
 
 import DriverDetails from './components/driver/driverDetails'
-import DriverList from './components/driver/driverList'
+import DriversRoute from './components/driver/driversRoute'
 import DriverForm from "./components/driver/driverForm";
 
 import GokartList from "./components/gokart/gokartList";
@@ -18,7 +18,7 @@ function App() {
                 <TopMenu/>
                 <Routes>
                     <Route exact path="/" element={<MainPage/>}/>
-                    <Route exact path="/drivers" element={<DriverList/>}/>
+                    <Route exact path="/drivers" element={<DriversRoute/>}/>
                     <Route exact path="/drivers/details/:driverId" element={<DriverDetails/>}/>
                     <Route exact path="/drivers/add" element={<DriverForm/>}/>
                     <Route exact path="/drivers/edit/:driverId" element={<DriverFormEdit/>}/>
