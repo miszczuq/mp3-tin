@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-function tableContent(props) {
+function TableContent(props) {
     const records = props.params.records
     const headers = props.params.tableColumnHeaders
     const parentRoute = props.params.parentRoute;
@@ -37,4 +37,4 @@ function tableContent(props) {
     )
 }
 
-export default tableContent
+export default TableContent

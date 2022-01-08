@@ -1,38 +1,39 @@
 import React, {useEffect, useState} from 'react'
-import {getDriverApiCall} from "../../apiCalls/driverApiCalls";
-import TableContent from "../table/tableContent";
-import {Link} from 'react-router-dom'
+import {getGokartApiCall} from "../../apiCalls/gokartApiCalls";
 import ListTable from "../table/listTable";
+import TableContent from "../table/tableContent";
 
-const DriversRoute = () => {
+const GokartRoute = () => {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
 
     const [params, setParams] = useState({
-        header: "Lista Kierowców",
-        buttonText: "Dodaj nowego kierowcę",
+        header: "Lista Gokartów",
+        buttonText: "Dodaj nowy gokart",
         tableColumnHeaders: [
-            "Imie",
-            "Nazwisko",
+            "Marka",
+            "Model",
+            "Moc(KM)",
             "Waga(kg)",
             "Akcje"
         ],
-        parentRoute: "/drivers",
-        cssClassName: "driver",
+        parentRoute: "/gokarts",
+        cssClassName: "gokart",
         records: []
     })
 
     useEffect(() => {
         //setContent();
-        getMappedDriverData();
+        getMappedGokartData();
     }, [])
 
     const setContent = () => {
         let content;
+
         if (error) {
             content = <p>Błąd: {error.message}</p>
         } else if (!isLoaded) {
-            content = <p>Ladowanie danych</p>
+            content = <p>Ladowanie danych gokartów</p>
         } else {
             content = <TableContent params={params}/>
         }
@@ -40,18 +41,18 @@ const DriversRoute = () => {
         return content
     }
 
-    const getMappedDriverData = () => {
-        let unwrap = ({id, first_name, last_name, weight}) => ({id, columns:[first_name, last_name, weight]})
-        getDriverApiCall()
+    const getMappedGokartData = () => {
+        let unwrap = ({id, brand, model, horse_power, weight}) => ({id, columns: [brand, model, horse_power, weight]})
+        getGokartApiCall()
             .then(res => res.data
-                .map(driver => unwrap(driver)))
+                .map(gokart => unwrap(gokart)))
             .then(
                 (data) => {
                     setIsLoaded(true);
-                    setParams( prevState => {
+                    setParams(prevState => {
                         prevState.records = data;
                         return {...prevState};
-                })
+                    })
                 },
                 (error) => {
                     setIsLoaded(true);
@@ -65,4 +66,5 @@ const DriversRoute = () => {
     )
 }
 
-export default DriversRoute;
+
+export default GokartRoute;

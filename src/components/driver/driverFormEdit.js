@@ -8,35 +8,35 @@ import FormComponent from "./formComponent";
 function DriverFormEdit() {
     const [driverId, setDriverId] = useState(useParams())
     const [driver, setDriver] = useState(null)
-    const [error, setError] = useState(null)
-    const [isLoaded, setIsLoaded] = useState(false)
-    const [message, setMessage] = useState(null)
+    // const [error, setError] = useState(null)
+    // const [isLoaded, setIsLoaded] = useState(false)
+    // const [message, setMessage] = useState(null)
 
     console.log("driverId: ", driverId)
     console.log("driverId type: ", typeof driverId)
 
     const formMode = driverId ? fMode.EDIT : fMode.NEW;
 
-    const [nestedState, setNestedState] = useState({
-        driverId: driverId,
-        driver: {
-            first_name: '',
-            last_name: '',
-            birthdate: '',
-            weight: '',
-            phone_number: ''
-        },
-        errors: {
-            first_name: '',
-            last_name: '',
-            birthdate: '',
-            weight: '',
-            phone_number: ''
-        },
-        formMode: formMode,
-        redirect: false,
-        error: null,
-    })
+    // const [nestedState, setNestedState] = useState({
+    //     driverId: driverId,
+    //     driver: {
+    //         first_name: '',
+    //         last_name: '',
+    //         birthdate: '',
+    //         weight: '',
+    //         phone_number: ''
+    //     },
+    //     errors: {
+    //         first_name: '',
+    //         last_name: '',
+    //         birthdate: '',
+    //         weight: '',
+    //         phone_number: ''
+    //     },
+    //     formMode: formMode,
+    //     redirect: false,
+    //     error: null,
+    // })
 
     useEffect(() => {
         checkState();
@@ -51,21 +51,7 @@ function DriverFormEdit() {
     const getDriverData = () => {
         getDriverByIdApiCall(driverId)
             .then(res => res.data)
-            .then(
-                (data) => {
-                    if (data.message) {
-                        setMessage(data.message);
-                    } else {
-                        setDriver(data);
-                        setMessage(null);
-                    }
-                    setIsLoaded(true)
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-            )
+            .then((data) => setDriver(data))
     }
 
     return (

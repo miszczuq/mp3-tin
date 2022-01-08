@@ -6,7 +6,7 @@ import DriverDetails from './components/driver/driverDetails'
 import DriversRoute from './components/driver/driversRoute'
 import DriverForm from "./components/driver/driverForm";
 
-import GokartList from "./components/gokart/gokartList";
+import GokartRoute from "./components/gokart/gokartRoute";
 
 import {BrowserRouter as Router, Route, Routes,} from 'react-router-dom'
 import DriverFormEdit from "./components/driver/driverFormEdit";
@@ -24,7 +24,7 @@ function App() {
                     <Route exact path="/drivers/edit/:driverId" element={<DriverFormEdit/>}/>
 
 
-                    <Route exact path="/gokarts" element={<GokartList/>}/>
+                    <Route exact path="/gokarts" element={<GokartRoute/>}/>
                     {/*<Route exact path="/gokarts/details/:gokartId" element={<GokartDetails/>}/>*/}
                     {/*<Route exact path="/gokarts/add" element={<GokartForm/>}/>*/}
                     {/*<Route exact path="/gokarts/add/:gokartId" element={<GokartForm/>}/>*/}
