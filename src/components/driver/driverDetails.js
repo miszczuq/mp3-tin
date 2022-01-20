@@ -23,7 +23,7 @@ function DriverDetails() {
         if (error) {
             content = <p>Błąd: {error.message}</p>
         } else if (!isLoaded) {
-            content = <p>Ladowanie danych pracownika</p>
+            content = <p>Ladowanie danych kierowcy</p>
         } else if (message) {
             content = <p>{message}</p>
         } else {
@@ -56,10 +56,11 @@ function DriverDetails() {
 
     return (
         <main>
-            <h2>Szczegóły kierowcy</h2>
-            {checkState()}
-            <div className="form-buttons">
-                <a href="/drivers" className="form-button-details-back">Powrót</a>
+            <div className={"main-content"}>
+                {checkState()}
+                <div className="form-buttons">
+                    <a href="/drivers" className="form-button-details-back">Powrót</a>
+                </div>
             </div>
         </main>
     )

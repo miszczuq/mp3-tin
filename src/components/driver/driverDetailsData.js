@@ -1,11 +1,34 @@
-import React from 'react';
+import React, {useState} from 'react';
+import DriverForm from "./driverForm";
+import formModeEnum from "../../helpers/formHelper";
 
 function DriverDetailsData(props) {
     const driver = props.driverData
+
+    // const [params, setParams] = useState({
+    //     header: "Lista Kierowców",
+    //     buttonText: "Dodaj nowego kierowcę",
+    //     tableColumnHeaders: [
+    //         "Imie",
+    //         "Nazwisko",
+    //         "Waga(kg)",
+    //         "Akcje"
+    //     ],
+    //     parentRoute: "/drivers",
+    //     cssClassName: "driver",
+    //     records: []
+    // })
+
+    const [params, setParams] = useState({
+        header: "Szczegóły kierowcy",
+        buttonText: "Edytuj",
+        formMode: formModeEnum.DETAILS
+    })
+
+
     return (
         <React.Fragment>
-            <p>Imie: {driver.first_name}</p>
-            <p>Nazwisko: {driver.last_name}</p>
+            <DriverForm params={params}/>
             <h2>Szczegóły przejazdów</h2>
             <div className="table-div">
                 <table className="table-list driver-gokartDetails">

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {getDriverByIdApiCall} from '../../apiCalls/driverApiCalls'
 import DriverDetailsData from "./driverDetailsData";
 import {Form, Formik} from "formik";
-import {postData} from "../../apiCalls/postDriverData";
+import {postData} from "../../apiCalls/postData";
 import validate from "../../validation/driverValidation";
 import {Link, useNavigate, useParams} from 'react-router-dom'
 import {getFormattedDate} from "../../helpers/dateHelper";
@@ -18,7 +18,6 @@ function FormComponent(props) {
             <Formik
                 initialValues={
                     {
-
                         first_name: driver ? driver.first_name : '',
                         last_name: driver ? driver.last_name : '',
                         birthdate: driver ? getFormattedDate(driver.birthdate) : '',
@@ -52,7 +51,7 @@ function FormComponent(props) {
                         <input type="text" name="first_name" id="first_name" placeholder="2-20 znaków"
                                value={values.first_name} onChange={handleChange}
                         />
-                        {errors.first_name && touched.firstName ? (
+                        {errors.first_name && touched.first_name ? (
                                 <span id="errorFirstName" className="errors-text">{errors.first_name}</span>
                             )
                             : ''

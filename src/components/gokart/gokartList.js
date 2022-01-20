@@ -2,10 +2,13 @@ import React, {useEffect, useState} from 'react'
 import {getGokartApiCall} from "../../apiCalls/gokartApiCalls";
 import ListTable from "../table/listTable";
 import TableContent from "../table/tableContent";
+import {deleteData} from "../../apiCalls/deleteData";
+import {Link} from "react-router-dom";
 
-const GokartRoute = () => {
+const GokartList = () => {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
+    const [isDeleted, setIsDeleted] = useState(false);
 
     const [params, setParams] = useState({
         header: "Lista Gokartów",
@@ -22,10 +25,15 @@ const GokartRoute = () => {
         records: []
     })
 
+    const handleDelete = (recordId) => {
+        deleteData(params.parentRoute, recordId).then(() => {
+            setIsDeleted(!isDeleted);
+        })
+    }
+
     useEffect(() => {
-        //setContent();
         getMappedGokartData();
-    }, [])
+    }, [isDeleted])
 
     const setContent = () => {
         let content;
@@ -35,7 +43,7 @@ const GokartRoute = () => {
         } else if (!isLoaded) {
             content = <p>Ladowanie danych gokartów</p>
         } else {
-            content = <TableContent params={params}/>
+            content = <TableContent params={params} onDelete={handleDelete}/>
         }
 
         return content
@@ -62,9 +70,21 @@ const GokartRoute = () => {
     }
 
     return (
-        <ListTable content={setContent()} params={params}/>
+        <React.Fragment>
+            {
+                params.records.length > 0 ?
+                    <ListTable content={setContent()} params={params}/>
+                    :
+                    <div className="main-content">
+                        <h1>Brak rekordów do wyświetlenia</h1>
+                        <p className={"section-buttons"}>
+                            <Link to={`${params.parentRoute}/add`} className="button-add">{params.buttonText}</Link>
+                        </p>
+                    </div>
+            }
+        </React.Fragment>
     )
 }
 
 
-export default GokartRoute;
+export default GokartList;

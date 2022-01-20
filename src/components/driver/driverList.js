@@ -5,7 +5,7 @@ import ListTable from "../table/listTable";
 import {deleteData} from "../../apiCalls/deleteData";
 import {Link} from "react-router-dom";
 
-const DriversList = () => {
+const DriverList = () => {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [isDeleted, setIsDeleted] = useState(false);
@@ -84,4 +84,4 @@ const DriversList = () => {
     )
 }
 
-export default DriversList;
+export default DriverList;

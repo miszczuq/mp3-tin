@@ -1,12 +1,12 @@
+import axios from "axios";
+
 const lapsBaseUrl = 'http://localhost:3000/api/driverGokarts'
 
 export function getLapApiCall(){
-    const promise = fetch(lapsBaseUrl)
-    return promise;
+    return axios.get(lapsBaseUrl)
 }
 
-// export  function getLapByIdApiCall(lapId){
-//     const url = `${driversBaseUrl}/${driverId.driverId}`;
-//     const promise = fetch(url);
-//     return promise;
-// }
+export  function getLapByIdApiCall(lapId){
+    const url = `${lapsBaseUrl}/${lapId.lapId}`;
+    return axios.get(url);
+}
