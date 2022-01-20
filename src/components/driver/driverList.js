@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import {getDriverApiCall} from "../../apiCalls/driverApiCalls";
 import TableContent from "../table/tableContent";
-import {Link} from 'react-router-dom'
 import ListTable from "../table/listTable";
+import {deleteData} from "../../apiCalls/deleteData";
+import {Link} from "react-router-dom";
 
-const DriversRoute = () => {
+const DriversList = () => {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
+    const [isDeleted, setIsDeleted] = useState(false);
 
     const [params, setParams] = useState({
         header: "Lista Kierowców",
@@ -22,36 +24,41 @@ const DriversRoute = () => {
         records: []
     })
 
+    const handleDelete = (recordId) => {
+        deleteData(params.parentRoute, recordId).then(() => {
+            setIsDeleted(!isDeleted);
+        })
+    }
+
     useEffect(() => {
-        //setContent();
         getMappedDriverData();
-    }, [])
+    }, [isDeleted])
 
     const setContent = () => {
         let content;
         if (error) {
             content = <p>Błąd: {error.message}</p>
         } else if (!isLoaded) {
-            content = <p>Ladowanie danych</p>
+            content = <p>Ladowanie danych kierowców</p>
         } else {
-            content = <TableContent params={params}/>
+            content = <TableContent params={params} onDelete={handleDelete}/>
         }
 
         return content
     }
 
     const getMappedDriverData = () => {
-        let unwrap = ({id, first_name, last_name, weight}) => ({id, columns:[first_name, last_name, weight]})
+        let subset = ({id, first_name, last_name, weight}) => ({id, columns: [first_name, last_name, weight]})
         getDriverApiCall()
             .then(res => res.data
-                .map(driver => unwrap(driver)))
+                .map(driver => subset(driver)))
             .then(
                 (data) => {
                     setIsLoaded(true);
-                    setParams( prevState => {
+                    setParams(prevState => {
                         prevState.records = data;
                         return {...prevState};
-                })
+                    })
                 },
                 (error) => {
                     setIsLoaded(true);
@@ -61,8 +68,20 @@ const DriversRoute = () => {
     }
 
     return (
-        <ListTable content={setContent()} params={params}/>
+        <React.Fragment>
+            {
+                params.records.length > 0 ?
+                <ListTable content={setContent()} params={params}/>
+                    :
+                        <div className="main-content">
+                            <h1>Brak rekordów do wyświetlenia</h1>
+                            <p className={"section-buttons"}>
+                                <Link to={`${params.parentRoute}/add`} className="button-add">{params.buttonText}</Link>
+                            </p>
+                        </div>
+            }
+        </React.Fragment>
     )
 }
 
-export default DriversRoute;
+export default DriversList;
