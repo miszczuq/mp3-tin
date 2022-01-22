@@ -106,7 +106,7 @@ function GokartForm(props){
                         }
 
                         <label htmlFor="model">Model: <span className="symbol-required">*</span></label>
-                        <input type="text" name="model" id="model" placeholder="2-20 znaków"
+                        <input type="text" name="model" id="model" placeholder="2-50 znaków"
                                value={values.model} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
                         />
@@ -129,7 +129,7 @@ function GokartForm(props){
                         }
 
                         <label htmlFor="horse_power">Moc: <span className="symbol-required">*</span></label>
-                        <input type="number" name="horse_power" id="horse_power" placeholder="2-20 znaków"
+                        <input type="number" name="horse_power" id="horse_power"
                                value={values.horse_power} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
                         />
@@ -141,7 +141,7 @@ function GokartForm(props){
                         }
 
                         <label htmlFor="weight">Waga: <span className="symbol-required">*</span></label>
-                        <input type="number" name="weight" id="weight" placeholder="2-20 znaków"
+                        <input type="number" name="weight" id="weight"
                                value={values.weight} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
                         />
@@ -153,7 +153,7 @@ function GokartForm(props){
                         }
 
                         <label htmlFor="fuel_consumption">Zużycie paliwa:</label>
-                        <input type="number" name="fuel_consumption" id="fuel_consumption" placeholder="2-20 znaków"
+                        <input type="number" name="fuel_consumption" id="fuel_consumption"
                                value={values.fuel_consumption} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
                         />
@@ -173,11 +173,12 @@ function GokartForm(props){
                                     <button onClick={() => {
                                         validateForm().then(
                                             (res) => {
-                                                if (Object.keys(res).length === 0) {
-                                                    handleSubmit()
-                                                } else {
-                                                    setErrors(res)
-                                                }
+                                                // if (Object.keys(res).length === 0) {
+                                                //     handleSubmit()
+                                                // } else {
+                                                //     setErrors(res)
+                                                // }
+                                                setErrors(res);
                                             }
                                         );
                                     }}

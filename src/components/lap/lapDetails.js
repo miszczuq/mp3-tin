@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useParams} from 'react-router-dom'
-import {getGokartByIdApiCall} from '../../apiCalls/gokartApiCalls'
-import GokartDetailsData from "./gokartDetailsData";
+import {getLapByIdApiCall} from '../../apiCalls/lapApiCalls'
+import LapDetailsData from "./lapDetailsData";
 
-function GokartDetails() {
-    const [gokartId, setGokartId] = useState(useParams())
-    const [gokart, setGokart] = useState(null)
+function LapDetails() {
+    const [lapId, setLapId] = useState(useParams())
+    const [lap, setLap] = useState(null)
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [message, setMessage] = useState(null)
 
     useEffect(() => {
         checkState();
-        getGokartData();
+        getLapData();
     }, [])
 
     const checkState = () => {
@@ -21,26 +21,26 @@ function GokartDetails() {
         if (error) {
             content = <p>Błąd: {error.message}</p>
         } else if (!isLoaded) {
-            content = <p>Ladowanie danych gokarta</p>
+            content = <p>Ladowanie danych kierowcy</p>
         } else if (message) {
             content = <p>{message}</p>
         } else {
-            content = <GokartDetailsData gokartData={gokart}/>
+            content = <LapDetailsData lapData={lap}/>
         }
 
         return content
     }
 
-    const getGokartData = () => {
-        getGokartByIdApiCall(gokartId)
+    const getLapData = () => {
+        getLapByIdApiCall(lapId)
             .then(res => res.data)
             .then(
                 (data) => {
                     if (data.message) {
-                        setGokart(null);
+                        setLap(null);
                         setMessage(data.message);
                     } else {
-                        setGokart(data);
+                        setLap(data);
                         setMessage(null);
                     }
                     setIsLoaded(true)
@@ -57,11 +57,11 @@ function GokartDetails() {
             <div className={"main-content"}>
                 {checkState()}
                 <div className="form-buttons">
-                    <Link to="/gokarts" className="form-button-details-back">Powrót</Link>
+                    <Link to="/driverGokarts" className="form-button-details-back">Powrót</Link>
                 </div>
             </div>
         </main>
     )
 }
 
-export default GokartDetails
+export default LapDetails

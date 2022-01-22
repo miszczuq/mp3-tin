@@ -49,7 +49,7 @@ const LapList = () => {
     }
 
     const getMappedLapData = () => {
-        let subset = ({id, driver, gokart, lap_time, wet_track}) => ({id, columns: [driver.first_name, gokart.model, lap_time, wet_track]})
+        let subset = ({id, driver, gokart, lap_time, wet_track}) => ({id, columns: [driver.first_name+' '+ driver.last_name, gokart.model, lap_time, wet_track]})
         getLapApiCall()
             .then(res => res.data
                 .map(lap => subset(lap)))

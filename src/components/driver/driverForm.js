@@ -120,7 +120,7 @@ function DriverForm(props) {
 
                             <label htmlFor="birthdate">Data urodzenia: <span
                                 className="symbol-required">*</span></label>
-                            <input type="date" name="birthdate" id="birthdate" placeholder="2-20 znaków"
+                            <input type="date" name="birthdate" id="birthdate"
                                    value={values.birthdate} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
                             />
@@ -131,7 +131,7 @@ function DriverForm(props) {
                             }
 
                             <label htmlFor="weight">Waga: <span className="symbol-required">*</span></label>
-                            <input type="number" name="weight" id="weight" placeholder="2-20 znaków"
+                            <input type="number" name="weight" id="weight"
                                    value={values.weight} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
                             />
@@ -141,9 +141,9 @@ function DriverForm(props) {
                                 )
                                 : ''
                             }
-
+g
                             <label htmlFor="phone_number">Numer telefonu:</label>
-                            <input type="text" name="phone_number" id="phone_number" placeholder="2-20 znaków"
+                            <input type="text" name="phone_number" id="phone_number" placeholder="2-9 znaków"
                                    value={values.phone_number} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
                             />

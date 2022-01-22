@@ -17,6 +17,7 @@ import GokartDetails from "./components/gokart/gokartDetails";
 import LapList from "./components/lap/lapList";
 import LapFormAdd from "./components/lap/lapFormAdd";
 import LapFormEdit from "./components/lap/lapFormEdit";
+import LapDetails from "./components/lap/lapDetails";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
                     <Route exact path="/driverGokarts" element={<LapList/>}/>
                     <Route exact path="/driverGokarts/add" element={<LapFormAdd/>}/>
                     <Route exact path="/driverGokarts/edit/:lapId" element={<LapFormEdit/>}/>
+                    <Route exact path="/driverGokarts/details/:lapId" element={<LapDetails/>}/>
                 </Routes>
                 <Footer/>
             </div>

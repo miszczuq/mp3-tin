@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {getDriverByIdApiCall} from '../../apiCalls/driverApiCalls'
 import DriverDetailsData from "./driverDetailsData";
 
@@ -59,7 +59,7 @@ function DriverDetails() {
             <div className={"main-content"}>
                 {checkState()}
                 <div className="form-buttons">
-                    <a href="/drivers" className="form-button-details-back">Powrót</a>
+                    <Link to="/drivers" className="form-button-details-back">Powrót</Link>
                 </div>
             </div>
         </main>
