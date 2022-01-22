@@ -141,7 +141,7 @@ function DriverForm(props) {
                                 )
                                 : ''
                             }
-g
+
                             <label htmlFor="phone_number">Numer telefonu:</label>
                             <input type="text" name="phone_number" id="phone_number" placeholder="2-9 znaków"
                                    value={values.phone_number} onChange={handleChange}
