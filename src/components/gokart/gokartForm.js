@@ -7,6 +7,7 @@ import {updateData} from "../../apiCalls/updateData";
 import {Form, Formik} from "formik";
 import {getFormattedDate} from "../../helpers/dateHelper";
 import validate from "../../validation/gokartValidation";
+import {useTranslation} from "react-i18next";
 
 function GokartForm(props){
     const navigate = useNavigate();
@@ -20,6 +21,8 @@ function GokartForm(props){
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [message, setMessage] = useState(null)
+
+    const {t} = useTranslation();
 
     useEffect(() => {
         if (formMode === formModeEnum.EDIT || formMode === formModeEnum.DETAILS) {
@@ -94,7 +97,7 @@ function GokartForm(props){
                   }) => (
                     <Form onSubmit={handleSubmit} className="form">
 
-                        <label htmlFor="brand">Marka: <span className="symbol-required">*</span></label>
+                        <label htmlFor="brand">{t("brand")}: <span className="symbol-required">*</span></label>
                         <input type="text" name="brand" id="brand" placeholder="2-20 znaków"
                                value={values.brand} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
@@ -105,7 +108,7 @@ function GokartForm(props){
                             : ''
                         }
 
-                        <label htmlFor="model">Model: <span className="symbol-required">*</span></label>
+                        <label htmlFor="model">{t("model")}: <span className="symbol-required">*</span></label>
                         <input type="text" name="model" id="model" placeholder="2-50 znaków"
                                value={values.model} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
@@ -116,7 +119,7 @@ function GokartForm(props){
                             : ''
                         }
 
-                        <label htmlFor="color">Color: <span
+                        <label htmlFor="color">{t("color")}: <span
                             className="symbol-required">*</span></label>
                         <input type="text" name="color" id="color" placeholder="2-20 znaków"
                                value={values.color} onChange={handleChange}
@@ -128,7 +131,7 @@ function GokartForm(props){
                             : ''
                         }
 
-                        <label htmlFor="horse_power">Moc: <span className="symbol-required">*</span></label>
+                        <label htmlFor="horse_power">{t("power")}: <span className="symbol-required">*</span></label>
                         <input type="number" name="horse_power" id="horse_power"
                                value={values.horse_power} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
@@ -140,7 +143,7 @@ function GokartForm(props){
                             : ''
                         }
 
-                        <label htmlFor="weight">Waga: <span className="symbol-required">*</span></label>
+                        <label htmlFor="weight">{t("weight")}: <span className="symbol-required">*</span></label>
                         <input type="number" name="weight" id="weight"
                                value={values.weight} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
@@ -152,7 +155,7 @@ function GokartForm(props){
                             : ''
                         }
 
-                        <label htmlFor="fuel_consumption">Zużycie paliwa:</label>
+                        <label htmlFor="fuel_consumption">{t("fuel_consumption")}:</label>
                         <input type="number" name="fuel_consumption" id="fuel_consumption"
                                value={values.fuel_consumption} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
@@ -167,7 +170,7 @@ function GokartForm(props){
 
                         <div className="form-buttons">
                             {formMode === formModeEnum.DETAILS ?
-                                <Link to={`/gokarts/edit/${gokartId.gokartId}`} className="form-button-edit">Edytuj</Link>
+                                <Link to={`/gokarts/edit/${gokartId.gokartId}`} className="form-button-edit">{t("edit")}</Link>
                                 :
                                 <React.Fragment>
                                     <button onClick={() => {
@@ -186,7 +189,7 @@ function GokartForm(props){
                                     >
                                         {buttonText}
                                     </button>
-                                    <Link to="/gokarts" className="form-button-cancel">Anuluj</Link>
+                                    <Link to="/gokarts" className="form-button-cancel">{t("cancel")}</Link>
                                 </React.Fragment>
                             }
                         </div>

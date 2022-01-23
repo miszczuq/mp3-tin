@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Link, useParams} from 'react-router-dom'
 import {getGokartByIdApiCall} from '../../apiCalls/gokartApiCalls'
 import GokartDetailsData from "./gokartDetailsData";
+import {useTranslation} from "react-i18next";
 
 function GokartDetails() {
     const [gokartId, setGokartId] = useState(useParams())
@@ -9,6 +10,8 @@ function GokartDetails() {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [message, setMessage] = useState(null)
+
+    const {t} = useTranslation();
 
     useEffect(() => {
         checkState();
@@ -19,9 +22,9 @@ function GokartDetails() {
         let content;
 
         if (error) {
-            content = <p>Błąd: {error.message}</p>
+            content = <p>{t("error")}: {error.message}</p>
         } else if (!isLoaded) {
-            content = <p>Ladowanie danych gokarta</p>
+            content = <p>{t("data_loading")}</p>
         } else if (message) {
             content = <p>{message}</p>
         } else {
@@ -57,7 +60,7 @@ function GokartDetails() {
             <div className={"main-content"}>
                 {checkState()}
                 <div className="form-buttons">
-                    <Link to="/gokarts" className="form-button-details-back">Powrót</Link>
+                    <Link to="/gokarts" className="form-button-details-back">{t("back")}</Link>
                 </div>
             </div>
         </main>

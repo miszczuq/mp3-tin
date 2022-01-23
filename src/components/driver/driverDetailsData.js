@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import DriverForm from "./driverForm";
 import formModeEnum from "../../helpers/formHelper";
+import {useTranslation} from "react-i18next";
 
 function DriverDetailsData(props) {
     const driver = props.driverData
+    const {t} = useTranslation();
 
     // const [params, setParams] = useState({
     //     header: "Lista Kierowców",
@@ -20,8 +22,8 @@ function DriverDetailsData(props) {
     // })
 
     const [params, setParams] = useState({
-        header: "Szczegóły kierowcy",
-        buttonText: "Edytuj",
+        header: t("driver_details"),
+        buttonText: t("edit"),
         formMode: formModeEnum.DETAILS
     })
 
@@ -29,14 +31,14 @@ function DriverDetailsData(props) {
     return (
         <React.Fragment>
             <DriverForm params={params}/>
-            <h2>Szczegóły przejazdów</h2>
+            <h2>{t("lap_details")}</h2>
             <div className="table-div">
                 <table className="table-list driver-gokartDetails">
                     <thead>
                     <tr>
-                        <th>Gokart</th>
-                        <th>Czas(s)</th>
-                        <th>Nawierzchnia</th>
+                        <th>{t("gokart")}</th>
+                        <th>{t("lap_time")}</th>
+                        <th>{t("surface")}</th>
                     </tr>
                     </thead>
 
@@ -47,7 +49,7 @@ function DriverDetailsData(props) {
                             <tr key={lap.id}>
                                 <td>{lap.gokart.model+' '+lap.gokart.brand}</td>
                                 <td>{lap.lap_time}</td>
-                                <td>{lap.wet_track ? "moka" : "sucha"}</td>
+                                <td>{lap.wet_track ? t("wet") : t("dry")}</td>
                             </tr>
                     )}
                     </tbody>

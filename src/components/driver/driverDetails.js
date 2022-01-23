@@ -2,9 +2,11 @@ import React, {useEffect, useState} from 'react'
 import {Link, useParams} from 'react-router-dom'
 import {getDriverByIdApiCall} from '../../apiCalls/driverApiCalls'
 import DriverDetailsData from "./driverDetailsData";
+import {useTranslation} from "react-i18next";
 
 function DriverDetails() {
     //const {id} = useParams()
+    const {t} = useTranslation();
 
     const [driverId, setDriverId] = useState(useParams())
     const [driver, setDriver] = useState(null)
@@ -59,7 +61,7 @@ function DriverDetails() {
             <div className={"main-content"}>
                 {checkState()}
                 <div className="form-buttons">
-                    <Link to="/drivers" className="form-button-details-back">Powrót</Link>
+                    <Link to="/drivers" className="form-button-details-back">{t("back")}</Link>
                 </div>
             </div>
         </main>

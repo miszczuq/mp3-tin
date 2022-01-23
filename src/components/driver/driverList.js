@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import React, {useEffect, useState} from 'react'
 import {getDriverApiCall} from "../../apiCalls/driverApiCalls";
 import TableContent from "../table/tableContent";
@@ -6,18 +7,20 @@ import {deleteData} from "../../apiCalls/deleteData";
 import {Link} from "react-router-dom";
 
 const DriverList = () => {
+    const {t} = useTranslation();
+
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [isDeleted, setIsDeleted] = useState(false);
 
     const [params, setParams] = useState({
-        header: "Lista Kierowców",
-        buttonText: "Dodaj nowego kierowcę",
+        header: t("driver_list"),
+        buttonText: t("add_driver"),
         tableColumnHeaders: [
-            "Imie",
-            "Nazwisko",
-            "Waga(kg)",
-            "Akcje"
+            t("first_name"),
+            t("last_name"),
+            t("weight"),
+            t("actions")
         ],
         parentRoute: "/drivers",
         cssClassName: "driver",
@@ -74,7 +77,7 @@ const DriverList = () => {
                 <ListTable content={setContent()} params={params}/>
                     :
                         <div className="main-content">
-                            <h1>Brak rekordów do wyświetlenia</h1>
+                            <h1>{t("no_records_to_show")}</h1>
                             <p className={"section-buttons"}>
                                 <Link to={`${params.parentRoute}/add`} className="button-add">{params.buttonText}</Link>
                             </p>

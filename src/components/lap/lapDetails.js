@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Link, useParams} from 'react-router-dom'
 import {getLapByIdApiCall} from '../../apiCalls/lapApiCalls'
 import LapDetailsData from "./lapDetailsData";
+import {useTranslation} from "react-i18next";
 
 function LapDetails() {
     const [lapId, setLapId] = useState(useParams())
@@ -9,6 +10,8 @@ function LapDetails() {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [message, setMessage] = useState(null)
+
+    const {t} = useTranslation();
 
     useEffect(() => {
         checkState();
@@ -19,9 +22,9 @@ function LapDetails() {
         let content;
 
         if (error) {
-            content = <p>Błąd: {error.message}</p>
+            content = <p>{t("error")}: {error.message}</p>
         } else if (!isLoaded) {
-            content = <p>Ladowanie danych kierowcy</p>
+            content = <p>{t("data_loading")}</p>
         } else if (message) {
             content = <p>{message}</p>
         } else {
@@ -57,7 +60,7 @@ function LapDetails() {
             <div className={"main-content"}>
                 {checkState()}
                 <div className="form-buttons">
-                    <Link to="/driverGokarts" className="form-button-details-back">Powrót</Link>
+                    <Link to="/driverGokarts" className="form-button-details-back">{t("back")}</Link>
                 </div>
             </div>
         </main>
