@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import LapForm from "./lapForm";
 import formModeEnum from "../../helpers/formHelper";
+import {useTranslation} from "react-i18next";
 
 function LapDetailsData(props) {
+    const {t} = useTranslation();
     const lap = props.lapData
 
     const [params, setParams] = useState({
-        header: "Szczegóły kierowcy",
-        buttonText: "Edytuj",
+        header: t("driver_details"),
+        buttonText: t("edit"),
         formMode: formModeEnum.DETAILS
     })
 

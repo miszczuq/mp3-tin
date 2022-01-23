@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
 import formModeEnum from "../../helpers/formHelper";
 import GokartForm from "./gokartForm";
+import {useTranslation} from "react-i18next";
 
 function GokartFormEdit() {
+    const {t} = useTranslation();
+
     const [params, setParams] = useState({
-        header: "Edytuj gokart",
-        buttonText: "Edytuj gokart",
+        header: t("edit_gokart"),
+        buttonText: t("edit_gokart"),
         formMode: formModeEnum.EDIT,
     })
 

@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import GokartForm from "./gokartForm";
 import formModeEnum from "../../helpers/formHelper";
+import {useTranslation} from "react-i18next";
 
 function GokartDetailsData(props) {
+    const {t} = useTranslation();
+
     const gokart = props.gokartData
     const [params, setParams] = useState({
-        header: "Szczegóły gokarta",
-        buttonText: "Edytuj",
+        header: t("gokart_details"),
+        buttonText: t("edit"),
         formMode: formModeEnum.DETAILS
     })
 
@@ -14,14 +17,14 @@ function GokartDetailsData(props) {
     return (
         <React.Fragment>
             <GokartForm params={params}/>
-            <h2>Szczegóły przejazdów</h2>
+            <h2>{t("lap_details")}</h2>
             <div className="table-div">
                 <table className="table-list gokart-gokartDetails">
                     <thead>
                     <tr>
-                        <th>Kierowca</th>
-                        <th>Czas(s)</th>
-                        <th>Nawierzchnia</th>
+                        <th>{t("driver")}</th>
+                        <th>{t("lap_time")}</th>
+                        <th>{t("surface")}</th>
                     </tr>
                     </thead>
 
@@ -32,7 +35,7 @@ function GokartDetailsData(props) {
                             <tr key={lap.id}>
                                 <td>{lap.driver.first_name+' '+lap.driver.last_name}</td>
                                 <td>{lap.lap_time}</td>
-                                <td>{lap.wet_track ? "moka" : "sucha"}</td>
+                                <td>{lap.wet_track ? t("wet") : t("dry")}</td>
                             </tr>
                     )}
                     </tbody>

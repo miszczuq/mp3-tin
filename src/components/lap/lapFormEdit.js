@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 import formModeEnum from "../../helpers/formHelper";
 import LapForm from "./lapForm";
+import {useTranslation} from "react-i18next";
 
 function LapFormEdit() {
+    const {t} = useTranslation();
     const [params, setParams] = useState({
-        header: "Edytuj przejazd",
-        buttonText: "Edytuj przejazd",
+        header: t("edit_lap"),
+        buttonText: t("edit_lap"),
         formMode: formModeEnum.EDIT,
     })
 

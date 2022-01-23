@@ -4,21 +4,24 @@ import ListTable from "../table/listTable";
 import TableContent from "../table/tableContent";
 import {deleteData} from "../../apiCalls/deleteData";
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const GokartList = () => {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [isDeleted, setIsDeleted] = useState(false);
 
+    const {t} = useTranslation();
+
     const [params, setParams] = useState({
-        header: "Lista Gokartów",
-        buttonText: "Dodaj nowy gokart",
+        header: t("gokart_list"),
+        buttonText: t("add_gokart"),
         tableColumnHeaders: [
-            "Marka",
-            "Model",
-            "Moc(KM)",
-            "Waga(kg)",
-            "Akcje"
+            t("brand"),
+            t("model"),
+            t("horse_power"),
+            t("weight"),
+            t("actions")
         ],
         parentRoute: "/gokarts",
         cssClassName: "gokart",
@@ -39,9 +42,9 @@ const GokartList = () => {
         let content;
 
         if (error) {
-            content = <p>Błąd: {error.message}</p>
+            content = <p>{t("error")}: {error.message}</p>
         } else if (!isLoaded) {
-            content = <p>Ladowanie danych gokartów</p>
+            content = <p>{t("data_loading")}</p>
         } else {
             content = <TableContent params={params} onDelete={handleDelete}/>
         }
@@ -76,7 +79,7 @@ const GokartList = () => {
                     <ListTable content={setContent()} params={params}/>
                     :
                     <div className="main-content">
-                        <h1>Brak rekordów do wyświetlenia</h1>
+                        <h1>{t("no_records_to_show")}</h1>
                         <p className={"section-buttons"}>
                             <Link to={`${params.parentRoute}/add`} className="button-add">{params.buttonText}</Link>
                         </p>

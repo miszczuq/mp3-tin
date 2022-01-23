@@ -1,25 +1,26 @@
 import * as Yup from "yup";
+import i18n from 'i18next'
 
 const today = new Date(Date.now());
 
 const validate = Yup.object().shape({
     first_name: Yup.string()
-        .min(2,"Pole musi mieć przynajmniej 2 znaki")
-        .max(20,"Pole nie może być dłuższe niż 20 znaków")
-        .required("Pole jest wymagane"),
+        .min(2,(obj) => i18n.t("less_than")+' '+obj.min)
+        .max(20, (obj) => i18n.t("less_than")+' '+obj.max)
+        .required(i18n.t("required")),
     last_name: Yup.string()
-        .min(2,"Pole musi mieć przynajmniej 2 znaki")
-        .max(20,"Pole nie może być dłuższe niż 20 znaków")
-        .required("Pole jest wymagane"),
+        .min(2,(obj) => i18n.t("less_than")+' '+obj.min)
+        .max(20,(obj) => i18n.t("less_than")+' '+obj.max)
+        .required(i18n.t("required")),
     birthdate: Yup.date()
-        .required("Pole jest wymagane")
-        .max(today, "Data musi być z przeszłości"),
+        .required(i18n.t("required"))
+        .max(today, i18n.t("date_before")),
     weight: Yup.number()
-        .required("Pole jest wymagane")
-        .min(0, "Wartość musi być dodatnia"),
+        .required(i18n.t("required"))
+        .min(0, i18n.t("positive")),
     phone_number: Yup.string()
-        .min(2, "Pole musi mieć przynajmniej 2 znaki")
-        .max(9,"Pole nie może być dłuższe niż 9 znaków")
+        .min(2, (obj) => i18n.t("less_than")+' '+obj.min)
+        .max(9,(obj) => i18n.t("less_than")+' '+obj.max)
 })
 
 export default validate;

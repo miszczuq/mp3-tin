@@ -10,6 +10,7 @@ import formModeEnum from "../../helpers/formHelper";
 import {updateData} from "../../apiCalls/updateData";
 import {getDriverApiCall} from "../../apiCalls/driverApiCalls";
 import {getGokartApiCall} from "../../apiCalls/gokartApiCalls";
+import {useTranslation} from "react-i18next";
 
 function LapForm(props) {
     const navigate = useNavigate();
@@ -25,6 +26,8 @@ function LapForm(props) {
     const [message, setMessage] = useState(null)
     const [allDrivers, setAllDrivers] = useState([]);
     const [allGokarts, setAllGokarts] = useState([]);
+
+    const {t} = useTranslation();
 
     useEffect(() => {
         getAllGokarts()
@@ -119,7 +122,7 @@ function LapForm(props) {
                       }) => (
                         <Form className="form">
 
-                            <label htmlFor="driver_id">Kierowca: <span className="symbol-required">*</span></label>
+                            <label htmlFor="driver_id">{t("driver")}: <span className="symbol-required">*</span></label>
                             {/*<select name={"driver_id"} id={"driver_id"} required disabled={formMode === formModeEnum.DETAILS}>*/}
                             {/*    <option value={''}>=== Wybierz Kierowcę ===</option>*/}
                             {/*    {*/}
@@ -131,7 +134,7 @@ function LapForm(props) {
                             {/*    }*/}
                             {/*</select>*/}
                             <Field as={"select"} name={"driver_id"} disabled={formMode === formModeEnum.DETAILS}>
-                                <option value={''}>=== Wybierz Kierowcę ===</option>
+                                <option value={''}>=== ===</option>
                                 {
                                     allDrivers.map(driver =>
                                         <option key={driver.id} value={driver.id} label={driver.first_name+' '+driver.last_name}
@@ -146,7 +149,7 @@ function LapForm(props) {
                                 : ''
                             }
 
-                            <label htmlFor="gokart_id">Gokart: <span className="symbol-required">*</span></label>
+                            <label htmlFor="gokart_id">{t("gokart")}: <span className="symbol-required">*</span></label>
                             {/*<select name={"gokart_id"} id={"gokart_id"} required disabled={formMode === formModeEnum.DETAILS}>*/}
                             {/*    <option value={''}>=== Wybierz Gokart ===</option>*/}
                             {/*    {*/}
@@ -159,7 +162,7 @@ function LapForm(props) {
                             {/*</select>*/}
 
                             <Field as={"select"} name={"gokart_id"} disabled={formMode === formModeEnum.DETAILS}>
-                                <option value={''}>=== Wybierz Gokart ===</option>
+                                <option value={''}>=== ===</option>
                                 {
                                     allGokarts.map(gokart =>
                                         <option key={gokart.id} value={gokart.id} label={gokart.brand+' '+gokart.model}
@@ -173,7 +176,7 @@ function LapForm(props) {
                                 )
                                 : ''
                             }
-                            <label htmlFor="lap_time">Czas przejazdu: <span className="symbol-required">*</span></label>
+                            <label htmlFor="lap_time">{t("lap_time")}: <span className="symbol-required">*</span></label>
                             <input type="number" name="lap_time" id="lap_time"
                                    value={values.lap_time} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
@@ -185,7 +188,7 @@ function LapForm(props) {
                                 : ''
                             }
 
-                            <label>Stan nawierzchni: <span className="symbol-required">*</span></label>
+                            <label>{t("surface")}: <span className="symbol-required">*</span></label>
 
                             <div className={"form-radio"}>
                                 <label>
@@ -193,14 +196,14 @@ function LapForm(props) {
                                             disabled={formMode === formModeEnum.DETAILS}
                                             checked={values.wet_track === "true"}
                                     />
-                                        Mokra
+                                    {t("wet")}
                                 </label>
                                 <label>
                                     <Field  type={"radio"} name="wet_track" id={"dry"} value={"false"}
                                             disabled={formMode === formModeEnum.DETAILS}
                                             checked={values.wet_track === "false"}
                                     />
-                                        Sucha
+                                    {t("dry")}
 
                                 </label>
                             </div>
@@ -214,7 +217,7 @@ function LapForm(props) {
 
                             <div className="form-buttons">
                                 {formMode === formModeEnum.DETAILS ?
-                                    <Link to={`/driverGokarts/edit/${lapId.lapId}`} className="form-button-edit">Edytuj</Link>
+                                    <Link to={`/driverGokarts/edit/${lapId.lapId}`} className="form-button-edit">{t("edit")}</Link>
                                     :
                                     <React.Fragment>
                                         <button
@@ -234,7 +237,7 @@ function LapForm(props) {
                                         >
                                             {buttonText}
                                         </button>
-                                        <Link to="/driverGokarts" className="form-button-cancel">Anuluj</Link>
+                                        <Link to="/driverGokarts" className="form-button-cancel">{t("cancel")}</Link>
                                     </React.Fragment>
                                 }
                             </div>

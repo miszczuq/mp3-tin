@@ -8,6 +8,7 @@ import {postData} from "../../apiCalls/postData";
 import validate from "../../validation/driverValidation";
 import formModeEnum from "../../helpers/formHelper";
 import {updateData} from "../../apiCalls/updateData";
+import {useTranslation} from "react-i18next";
 
 function DriverForm(props) {
     const navigate = useNavigate();
@@ -21,6 +22,8 @@ function DriverForm(props) {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [message, setMessage] = useState(null)
+
+    const {t} = useTranslation();
 
     useEffect(() => {
         if (formMode === formModeEnum.EDIT || formMode === formModeEnum.DETAILS) {
@@ -96,7 +99,7 @@ function DriverForm(props) {
                       }) => (
                         <Form onSubmit={handleSubmit} className="form">
 
-                            <label htmlFor="first_name">Imię: <span className="symbol-required">*</span></label>
+                            <label htmlFor="first_name">{t("first_name")}: <span className="symbol-required">*</span></label>
                             <input type="text" name="first_name" id="first_name" placeholder="2-20 znaków"
                                    value={values.first_name} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
@@ -107,7 +110,7 @@ function DriverForm(props) {
                                 : ''
                             }
 
-                            <label htmlFor="last_name">Nazwisko: <span className="symbol-required">*</span></label>
+                            <label htmlFor="last_name">{t("last_name")}: <span className="symbol-required">*</span></label>
                             <input type="text" name="last_name" id="last_name" placeholder="2-20 znaków"
                                    value={values.last_name} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
@@ -118,7 +121,7 @@ function DriverForm(props) {
                                 : ''
                             }
 
-                            <label htmlFor="birthdate">Data urodzenia: <span
+                            <label htmlFor="birthdate">{t("birthdate")}: <span
                                 className="symbol-required">*</span></label>
                             <input type="date" name="birthdate" id="birthdate"
                                    value={values.birthdate} onChange={handleChange}
@@ -130,7 +133,7 @@ function DriverForm(props) {
                                 : ''
                             }
 
-                            <label htmlFor="weight">Waga: <span className="symbol-required">*</span></label>
+                            <label htmlFor="weight">{t("weight")}: <span className="symbol-required">*</span></label>
                             <input type="number" name="weight" id="weight"
                                    value={values.weight} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
@@ -141,8 +144,7 @@ function DriverForm(props) {
                                 )
                                 : ''
                             }
-g
-                            <label htmlFor="phone_number">Numer telefonu:</label>
+                            <label htmlFor="phone_number">{t("phone_number")}:</label>
                             <input type="text" name="phone_number" id="phone_number" placeholder="2-9 znaków"
                                    value={values.phone_number} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
@@ -156,7 +158,7 @@ g
 
                             <div className="form-buttons">
                                 {formMode === formModeEnum.DETAILS ?
-                                    <Link to={`/drivers/edit/${driverId.driverId}`} className="form-button-edit">Edytuj</Link>
+                                    <Link to={`/drivers/edit/${driverId.driverId}`} className="form-button-edit">{t("edit")}</Link>
                                     :
                                     <React.Fragment>
                                         <button onClick={() => {
@@ -174,7 +176,7 @@ g
                                         >
                                             {buttonText}
                                         </button>
-                                        <Link to="/drivers" className="form-button-cancel">Anuluj</Link>
+                                        <Link to="/drivers" className="form-button-cancel">{t("cancel")}</Link>
                                     </React.Fragment>
                                 }
                             </div>

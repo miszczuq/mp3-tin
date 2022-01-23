@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Link} from "react-router-dom";
 import { confirmAlert } from 'react-confirm-alert';
 import "react-confirm-alert/src/react-confirm-alert.css";
+import {useTranslation} from "react-i18next";
 
 function TableContent(props) {
     const records = props.params.records
@@ -9,17 +10,19 @@ function TableContent(props) {
     const parentRoute = props.params.parentRoute;
     const cssClassName = props.params.cssClassName
 
+    const {t} = useTranslation();
+
     const deleteConfirm = (recordId) => {
         confirmAlert({
-            title: 'Confirm to delete',
-            message: 'Are you sure you want to delete this record?',
+            title: t("confirm_to_delete"),
+            message: t("delete_question"),
             buttons: [
                 {
-                    label: 'Yes',
+                    label: t("yes"),
                     onClick: () => props.onDelete(recordId)
                 },
                 {
-                    label: 'No'
+                    label: t("no")
                 }
             ]
         })
@@ -39,10 +42,10 @@ function TableContent(props) {
                 <tr key={record.id}>
                     {record.columns.map((value,index)=>{
                         if(value === true){
-                            value = 'mokra';
+                            value = t("wet");
                         }
                         if(value === false){
-                            value = 'sucha';
+                            value = t("dry");
                         }
                         return <td key={index}>{value}</td>
                     })}
