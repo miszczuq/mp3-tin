@@ -166,11 +166,7 @@ function DriverForm(props) {
                                         <button onClick={() => {
                                             validateForm().then(
                                                 (res) => {
-                                                    if (Object.keys(res).length === 0) {
-                                                        handleSubmit()
-                                                    } else {
-                                                        setErrors(res)
-                                                    }
+                                                    setErrors(res)
                                                 }
                                             );
                                         }}
