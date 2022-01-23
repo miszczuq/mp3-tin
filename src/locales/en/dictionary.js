@@ -1,4 +1,10 @@
 export const DICTIONARY_EN = {
+    register: "Register",
+    username: "Username",
+    password: "Password",
+    confirm_password: "Confirm password",
+    password_match: "Password must match",
+
     required: "Value required",
     date_before: "Date has to be from the past",
     positive: "Number has to be positive",

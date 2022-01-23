@@ -1,4 +1,10 @@
 export const DICTIONARY_PL = {
+    register: "Zarejestruj",
+    username: "Nazwa użytkownika",
+    password: "Hasło",
+    confirm_password: "Potwierdź hasło",
+    password_match: "Hasła muszą być identyczne",
+
     required: "Pole jest wymagane",
     date_before: "Data musi być z przeszłości",
     positive: "Liczba musi być dodatnia",
