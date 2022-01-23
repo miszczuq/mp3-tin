@@ -128,7 +128,7 @@ header .buttons{
     margin-left: auto;
 }
 
-header .buttons div{
+header .buttons Link{
     border-radius: 3px;
     border: white solid 2px;
     padding: 0.5em;
@@ -348,7 +348,7 @@ i{
 
 .form {
     display: grid;
-    grid-template-columns: 150px 300px auto 1fr;
+    grid-template-columns: 170px 300px auto 1fr;
     gap: 1em;
     padding: 1em;
     color: white;
@@ -383,6 +383,7 @@ i{
 
 .form select,
 .form input[type="text"],
+.form input[type="password"],
 .form input[type="number"],
 .form input[type="date"],
 .form input[type="email"] {
@@ -750,7 +751,8 @@ nav .nav-content .nav-list .active:before {
     }
 
     table.table-list td{
-        padding-left: 50%;
+        /*padding-left: 50%;*/
+        text-align: center;
     }
     table.table-list td:before
     {

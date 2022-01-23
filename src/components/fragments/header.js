@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 import {i18n} from "../../locales/i18n";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 function Header() {
 
@@ -31,8 +32,8 @@ function Header() {
                     </div>
                 </div>
                 <div className="buttons">
-                    <div className="button-register">Register</div>
-                    <div className="button-login">Login</div>
+                    <Link to={"/users/register"} className="button-register">{t("register")}</Link>
+                    <Link to={"/users/login"} className="button-login">{t("login")}</Link>
                     <button value='pl' onClick={handleOnclick} className={"delete-button"}>
                         {t("polish")}
                     </button>
