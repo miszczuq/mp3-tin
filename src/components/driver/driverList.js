@@ -16,13 +16,13 @@ const DriverList = () => {
     const [isDeleted, setIsDeleted] = useState(false);
 
     const [params, setParams] = useState({
-        header: t("driver_list"),
-        buttonText: t("add_driver"),
+        header: "driver_list",
+        buttonText: "add_driver",
         tableColumnHeaders: [
-            t("first_name"),
-            t("last_name"),
-            t("weight"),
-            t("actions")
+            "first_name",
+            "last_name",
+            "weight",
+            "actions"
         ],
         parentRoute: "/drivers",
         cssClassName: "driver",
@@ -33,6 +33,9 @@ const DriverList = () => {
         deleteData(params.parentRoute, recordId).then(() => {
             setIsDeleted(!isDeleted);
         })
+            .catch(e => {
+                //TODO: Make popup when user get 401
+            })
     }
 
     useEffect(() => {
@@ -48,9 +51,9 @@ const DriverList = () => {
     const setContent = () => {
         let content;
         if (error) {
-            content = <p>Błąd: {error.message}</p>
+            content = <p>{t("error")}: {error.message}</p>
         } else if (!isLoaded) {
-            content = <p>Ladowanie danych kierowców</p>
+            content = <p>{t("data_loading")}</p>
         } else {
             content = <TableContent params={params} onDelete={handleDelete}/>
         }
@@ -95,7 +98,7 @@ const DriverList = () => {
             </React.Fragment>
             :
             <div className="main-content">
-                <h1>Braaaak dostępu</h1>
+                <h1>{t("no_access")}</h1>
             </div>
     )
 }

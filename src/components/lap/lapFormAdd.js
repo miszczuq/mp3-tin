@@ -7,8 +7,8 @@ function LapFormAdd() {
     const {t} = useTranslation();
 
     const [params, setParams] = useState({
-        header: t("new_lap"),
-        buttonText: t("add_driver"),
+        header: "new_lap",
+        buttonText: "add_driver",
         formMode: formModeEnum.NEW
     })
 

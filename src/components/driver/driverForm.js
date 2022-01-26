@@ -62,7 +62,7 @@ function DriverForm(props) {
             //<main>
             //<div className="main-content">
             <React.Fragment>
-                <h2>{header}</h2>
+                <h2>{t(header)}</h2>
                 <Formik
                     initialValues={
                         {
@@ -103,7 +103,7 @@ function DriverForm(props) {
                         <Form onSubmit={handleSubmit} className="form">
 
                             <label htmlFor="first_name">{t("first_name")}: <span className="symbol-required">*</span></label>
-                            <input type="text" name="first_name" id="first_name" placeholder="2-20 znaków"
+                            <input type="text" name="first_name" id="first_name" placeholder={t("char2_20")}
                                    value={values.first_name} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
                             />
@@ -114,7 +114,7 @@ function DriverForm(props) {
                             }
 
                             <label htmlFor="last_name">{t("last_name")}: <span className="symbol-required">*</span></label>
-                            <input type="text" name="last_name" id="last_name" placeholder="2-20 znaków"
+                            <input type="text" name="last_name" id="last_name" placeholder={t("char2_20")}
                                    value={values.last_name} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
                             />
@@ -150,7 +150,7 @@ function DriverForm(props) {
 
                             <label htmlFor="phone_number">{t("phone_number")}:</label>
 
-                            <input type="text" name="phone_number" id="phone_number" placeholder="2-9 znaków"
+                            <input type="text" name="phone_number" id="phone_number" placeholder={t("char2_9")}
                                    value={values.phone_number} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
                             />
@@ -175,7 +175,7 @@ function DriverForm(props) {
                                         }}
                                                 className="form-button-submit"
                                         >
-                                            {buttonText}
+                                            {t(buttonText)}
                                         </button>
                                         <Link to="/drivers" className="form-button-cancel">{t("cancel")}</Link>
                                     </React.Fragment>

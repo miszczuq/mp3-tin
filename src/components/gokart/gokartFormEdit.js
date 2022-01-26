@@ -7,8 +7,8 @@ function GokartFormEdit() {
     const {t} = useTranslation();
 
     const [params, setParams] = useState({
-        header: t("edit_gokart"),
-        buttonText: t("edit_gokart"),
+        header: "edit_gokart",
+        buttonText: "edit_gokart",
         formMode: formModeEnum.EDIT,
     })
 

@@ -82,7 +82,7 @@ function LapForm(props) {
             //<main>
             //<div className="main-content">
             <React.Fragment>
-                <h2>{header}</h2>
+                <h2>{t(header)}</h2>
                 <Formik
                     initialValues={
                         {
@@ -235,7 +235,7 @@ function LapForm(props) {
                                         }}
                                                 className="form-button-submit"
                                         >
-                                            {buttonText}
+                                            {t(buttonText)}
                                         </button>
                                         <Link to="/driverGokarts" className="form-button-cancel">{t("cancel")}</Link>
                                     </React.Fragment>

@@ -15,7 +15,6 @@ function Header(props) {
         e.preventDefault();
         setLanguage(e.target.value);
         i18n.changeLanguage(e.target.value);
-        window.location.reload();
     }
 
 
@@ -44,7 +43,7 @@ function Header(props) {
                     <Link to={"/users/login"} className="button-login">{t("login")}</Link>
                     </React.Fragment>
                         :
-                        <Link to={"/"} className="button-login" onClick={handleLogout}>{'logout'}</Link>
+                        <Link to={"/"} className="button-login" onClick={handleLogout}>{t('logout')}</Link>
                     }
                         <button value='pl' onClick={handleOnclick} className={"delete-button"}>
                             {t("polish")}

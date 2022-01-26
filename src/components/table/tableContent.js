@@ -33,7 +33,7 @@ function TableContent(props) {
             <thead>
             <tr>
                 {headers.map((value,index) =>
-                    <th key={index}>{value}</th>
+                    <th key={index}>{t(value)}</th>
                 )}
             </tr>
             </thead>

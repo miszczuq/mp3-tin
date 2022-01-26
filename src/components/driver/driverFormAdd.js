@@ -7,8 +7,8 @@ function DriverFormAdd() {
     const {t} = useTranslation();
 
     const [params, setParams] = useState({
-        header: t("new_driver"),
-        buttonText: t("add_driver"),
+        header: "add_driver",
+        buttonText: "add_driver",
         formMode: formModeEnum.NEW
     })
 

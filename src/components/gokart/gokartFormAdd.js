@@ -7,8 +7,8 @@ function GokartFormAdd() {
     const {t} = useTranslation();
 
     const [params, setParams] = useState({
-        header: t("new_gokart"),
-        buttonText: t("add_gokart"),
+        header: "new_gokart",
+        buttonText: "add_gokart",
         formMode: formModeEnum.NEW
     })
 

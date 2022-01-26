@@ -22,7 +22,7 @@ function DriverDetailsData(props) {
     // })
 
     const [params, setParams] = useState({
-        header: t("driver_details"),
+        header: "driver_details",
         buttonText: t("edit"),
         formMode: formModeEnum.DETAILS
     })

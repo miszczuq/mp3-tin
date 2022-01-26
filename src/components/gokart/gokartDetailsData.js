@@ -8,8 +8,8 @@ function GokartDetailsData(props) {
 
     const gokart = props.gokartData
     const [params, setParams] = useState({
-        header: t("gokart_details"),
-        buttonText: t("edit"),
+        header: "gokart_details",
+        buttonText: "edit",
         formMode: formModeEnum.DETAILS
     })
 

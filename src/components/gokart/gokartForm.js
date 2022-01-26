@@ -57,7 +57,7 @@ function GokartForm(props){
     return (
         (gokart || formMode === formModeEnum.NEW) ?
         <React.Fragment>
-            <h2>{header}</h2>
+            <h2>{t(header)}</h2>
             <Formik
                 initialValues={
                     {
@@ -98,7 +98,7 @@ function GokartForm(props){
                     <Form onSubmit={handleSubmit} className="form">
 
                         <label htmlFor="brand">{t("brand")}: <span className="symbol-required">*</span></label>
-                        <input type="text" name="brand" id="brand" placeholder="2-20 znaków"
+                        <input type="text" name="brand" id="brand" placeholder={t("char2_20")}
                                value={values.brand} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
                         />
@@ -109,7 +109,7 @@ function GokartForm(props){
                         }
 
                         <label htmlFor="model">{t("model")}: <span className="symbol-required">*</span></label>
-                        <input type="text" name="model" id="model" placeholder="2-50 znaków"
+                        <input type="text" name="model" id="model" placeholder={t("char2_50")}
                                value={values.model} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
                         />
@@ -121,7 +121,7 @@ function GokartForm(props){
 
                         <label htmlFor="color">{t("color")}: <span
                             className="symbol-required">*</span></label>
-                        <input type="text" name="color" id="color" placeholder="2-20 znaków"
+                        <input type="text" name="color" id="color" placeholder={t("char2_20")}
                                value={values.color} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
                         />
@@ -187,7 +187,7 @@ function GokartForm(props){
                                     }}
                                             className="form-button-submit"
                                     >
-                                        {buttonText}
+                                        {t(buttonText)}
                                     </button>
                                     <Link to="/gokarts" className="form-button-cancel">{t("cancel")}</Link>
                                 </React.Fragment>

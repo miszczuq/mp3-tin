@@ -15,14 +15,14 @@ const LapList = () => {
     const [isDeleted, setIsDeleted] = useState(false);
 
     const [params, setParams] = useState({
-        header: t("lap_list"),
-        buttonText: t("add_lap"),
+        header: "lap_list",
+        buttonText: "add_lap",
         tableColumnHeaders: [
-            t("driver"),
-            t("gokart"),
-            t("lap_time"),
-            t("surface"),
-            t("actions")
+            "driver",
+            "gokart",
+            "lap_time",
+            "surface",
+            "actions"
         ],
         parentRoute: "/driverGokarts",
         cssClassName: "driverGokart",

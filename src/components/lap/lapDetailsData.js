@@ -8,8 +8,8 @@ function LapDetailsData(props) {
     const lap = props.lapData
 
     const [params, setParams] = useState({
-        header: t("driver_details"),
-        buttonText: t("edit"),
+        header: "driver_details",
+        buttonText: "edit",
         formMode: formModeEnum.DETAILS
     })
 

@@ -14,14 +14,14 @@ const GokartList = () => {
     const {t} = useTranslation();
 
     const [params, setParams] = useState({
-        header: t("gokart_list"),
-        buttonText: t("add_gokart"),
+        header: "gokart_list",
+        buttonText: "add_gokart",
         tableColumnHeaders: [
-            t("brand"),
-            t("model"),
-            t("horse_power"),
-            t("weight"),
-            t("actions")
+            "brand",
+            "model",
+            "horse_power",
+            "weight",
+            "actions"
         ],
         parentRoute: "/gokarts",
         cssClassName: "gokart",
@@ -29,9 +29,11 @@ const GokartList = () => {
     })
 
     const handleDelete = (recordId) => {
-        deleteData(params.parentRoute, recordId).then(() => {
+        deleteData(params.parentRoute, recordId)
+            .then(() => {
             setIsDeleted(!isDeleted);
         })
+            .catch()
     }
 
     useEffect(() => {

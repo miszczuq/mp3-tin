@@ -7,8 +7,8 @@ function DriverFormEdit() {
     const {t} = useTranslation();
 
     const [params, setParams] = useState({
-        header: t("edit_driver"),
-        buttonText: t("edit_driver"),
+        header: "edit_driver",
+        buttonText: "edit_driver",
         formMode: formModeEnum.EDIT,
     })
 
