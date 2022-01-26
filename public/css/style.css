@@ -128,12 +128,20 @@ header .buttons{
     margin-left: auto;
 }
 
-header .buttons Link{
+header .buttons a{
     border-radius: 3px;
     border: white solid 2px;
     padding: 0.5em;
     margin: 0.5em;
     color: white;
+}
+
+header .buttons button{
+    border-radius: 3px;
+    border: pink solid 2px;
+    padding: 0.5em;
+    margin: 0.5em;
+    color: pink;
 }
 
 header .quote div{
@@ -440,6 +448,26 @@ i{
 .form-button-submit
 {
     background-color: #27ae60;
+}
+
+ .button-register,
+ .button-login{
+    text-decoration: none;
+}
+
+a:visited .button-register,
+a:visited .button-login{
+    text-decoration: none;
+}
+
+a:hover .button-register,
+a:hover .button-login{
+    text-decoration: none;
+}
+
+a:active .button-register,
+a:active .button-login{
+    text-decoration: none;
 }
 
 .delete-button{

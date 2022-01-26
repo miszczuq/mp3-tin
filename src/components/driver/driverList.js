@@ -82,7 +82,11 @@ const DriverList = () => {
     }
 
     return (
-        isAuthenticated() ?
+        !isAuthenticated() ?
+            <React.Fragment>{
+                navigate('/users/login')
+            }</React.Fragment> :
+
             <React.Fragment>
                 {
                     params.records.length > 0 ?
@@ -91,15 +95,14 @@ const DriverList = () => {
                         <div className="main-content">
                             <h1>{t("no_records_to_show")}</h1>
                             <p className={"section-buttons"}>
-                                <Link to={`${params.parentRoute}/add`} className="button-add">{params.buttonText}</Link>
+                                <Link to={`${params.parentRoute}/add`} className="button-add">{t(params.buttonText)}</Link>
                             </p>
                         </div>
                 }
             </React.Fragment>
-            :
-            <div className="main-content">
-                <h1>{t("no_access")}</h1>
-            </div>
+            // <div className="main-content">
+            //     <h1>{t("no_access")}</h1>
+            // </div>
     )
 }
 

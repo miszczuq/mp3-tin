@@ -77,12 +77,6 @@ function LapForm(props) {
         }
     }
 
-    const test = () => {
-        console.log("lap", lap);
-        console.log("allDrivers",allDrivers);
-        console.log("allGokarts",allGokarts);
-    }
-
     return (
         (lap || formMode === formModeEnum.NEW) ?
             //<main>

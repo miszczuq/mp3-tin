@@ -32,6 +32,7 @@ const LapList = () => {
     const handleDelete = (recordId) => {
         deleteData(params.parentRoute, recordId).then(() => {
             setIsDeleted(!isDeleted);
+            alert("Hello! I am an alert box!!");
         })
     }
 
@@ -85,7 +86,7 @@ const LapList = () => {
                     <div className="main-content">
                         <h1>{t("no_records_to_show")}</h1>
                         <p className={"section-buttons"}>
-                            <Link to={`${params.parentRoute}/add`} className="button-add">{params.buttonText}</Link>
+                            <Link to={`${params.parentRoute}/add`} className="button-add">{t(params.buttonText)}</Link>
                         </p>
                     </div>
             }

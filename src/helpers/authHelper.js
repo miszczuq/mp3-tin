@@ -9,6 +9,7 @@ export function isAuthenticated()
 {
     console.log("isAuthenticated")
     const user=getCurrentUser()
+    console.log("afterCurrentUser")
     return !!user;
 }
 

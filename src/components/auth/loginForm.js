@@ -44,7 +44,7 @@ function LoginForm(props) {
                     if (data.token) {
                         console.log("data.Token Found", data)
                         props.handleLogin(JSON.stringify(data))
-                        navigate(-1);
+                        navigate('/');
                     }
                 } else if (response.status === 401) {
                     let data = response.data
