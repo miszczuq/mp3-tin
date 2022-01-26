@@ -2,8 +2,12 @@ import React, {useState} from "react"
 import {i18n} from "../../locales/i18n";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
+import {isAuthenticated} from "../../helpers/authHelper";
+import {logoutApiCall} from "../../apiCalls/userApiCalls";
 
-function Header() {
+function Header(props) {
+
+    const handleLogout = props.handleLogout;
 
     const [language, setLanguage] = useState('pl');
 
@@ -13,6 +17,7 @@ function Header() {
         i18n.changeLanguage(e.target.value);
         window.location.reload();
     }
+
 
     const {t} = useTranslation();
 
@@ -32,14 +37,21 @@ function Header() {
                     </div>
                 </div>
                 <div className="buttons">
+
+                    {!isAuthenticated() ?
+                    <React.Fragment>
                     <Link to={"/users/register"} className="button-register">{t("register")}</Link>
                     <Link to={"/users/login"} className="button-login">{t("login")}</Link>
-                    <button value='pl' onClick={handleOnclick} className={"delete-button"}>
-                        {t("polish")}
-                    </button>
-                    <button value='en' onClick={handleOnclick} className={"delete-button"}>
-                        {t("english")}
-                    </button>
+                    </React.Fragment>
+                        :
+                        <Link to={"/"} className="button-login" onClick={handleLogout}>{'logout'}</Link>
+                    }
+                        <button value='pl' onClick={handleOnclick} className={"delete-button"}>
+                            {t("polish")}
+                        </button>
+                        <button value='en' onClick={handleOnclick} className={"delete-button"}>
+                    {t("english")}
+                        </button>
                 </div>
             </div>
         </header>

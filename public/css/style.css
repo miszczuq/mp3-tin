@@ -359,6 +359,11 @@ i{
     grid-column:1 ;
 }
 
+.form .error-message{
+    grid-column:2 ;
+    color: #c0392b;
+}
+
 .form .form-radio{
     grid-column: 2;
     margin: auto 0 auto 0;

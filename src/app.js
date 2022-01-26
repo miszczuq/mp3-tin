@@ -1,4 +1,5 @@
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
 
 import TopMenu from "./components/fragments/topMenu"
 import Footer from "./components/fragments/footer";
@@ -20,17 +21,38 @@ import LapFormEdit from "./components/lap/lapFormEdit";
 import LapDetails from "./components/lap/lapDetails";
 import LoginForm from "./components/auth/loginForm";
 import RegisterForm from "./components/auth/registerForm";
+import {getCurrentUser} from "./helpers/authHelper";
 
 
 function App() {
+
+    const [user, setUser] = useState('');
+    const [prevPath, setPrevPath] = useState('');
+
+    const handleLogin = (user) =>{
+        localStorage.setItem("user", user)
+        setUser(user);
+    }
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        setUser(undefined);
+    }
+
+    useEffect(() => {
+        const currentUser = getCurrentUser()
+        setUser(currentUser);
+    }, [])
+
     return (
         <Router>
             <div className="master-container">
-                <TopMenu/>
+                <TopMenu handleLogout={handleLogout}/>
                 <Routes>
                     <Route exact path="/" element={<MainPage/>}/>
 
                     <Route exact path="/drivers" element={<DriverList/>}/>
+                    {/*<Route exact path="/drivers" element={<DriverList apiRequestFunction={getDriverApiCall()}/>}/>*/}
                     <Route exact path="/drivers/details/:driverId" element={<DriverDetails/>}/>
                     <Route exact path="/drivers/add" element={<DriverFormAdd/>}/>
                     <Route exact path="/drivers/edit/:driverId" element={<DriverFormEdit/>}/>
@@ -45,7 +67,7 @@ function App() {
                     <Route exact path="/driverGokarts/edit/:lapId" element={<LapFormEdit/>}/>
                     <Route exact path="/driverGokarts/details/:lapId" element={<LapDetails/>}/>
 
-                    <Route exact path="users/login" element={<LoginForm/>}/>
+                    <Route exact path="users/login" element={<LoginForm handleLogin={handleLogin}/>}/>
                     <Route exact path="users/register" element={<RegisterForm/>}/>
 
                 </Routes>

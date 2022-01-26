@@ -9,6 +9,7 @@ import validate from "../../validation/driverValidation";
 import formModeEnum from "../../helpers/formHelper";
 import {updateData} from "../../apiCalls/updateData";
 import {useTranslation} from "react-i18next";
+import {getCurrentUser} from "../../helpers/authHelper";
 
 function DriverForm(props) {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ function DriverForm(props) {
     const formMode = props.params.formMode
     const header = props.params.header
     const buttonText = props.params.buttonText
+    const user = getCurrentUser();
 
     const [driverId, setDriverId] = useState(useParams())
     const [driver, setDriver] = useState(null)
@@ -68,7 +70,8 @@ function DriverForm(props) {
                             last_name: driver ? driver.last_name : '',
                             birthdate: driver ? getFormattedDate(driver.birthdate) : '',
                             weight: driver ? driver.weight : '',
-                            phone_number: driver ? driver.phone_number : ''
+                            phone_number: driver ? driver.phone_number : '',
+                            manager_id: user ? user.userId : '',
                         }
                     } onSubmit={
                     async (values) => {

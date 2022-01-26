@@ -1,13 +1,15 @@
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 import React, {useEffect, useState} from 'react'
-import {getDriverApiCall} from "../../apiCalls/driverApiCalls";
 import TableContent from "../table/tableContent";
 import ListTable from "../table/listTable";
 import {deleteData} from "../../apiCalls/deleteData";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {isAuthenticated} from "../../helpers/authHelper";
+import {getDriverApiCall} from "../../apiCalls/driverApiCalls";
 
 const DriverList = () => {
     const {t} = useTranslation();
+    const navigate = useNavigate();
 
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
@@ -36,6 +38,12 @@ const DriverList = () => {
     useEffect(() => {
         getMappedDriverData();
     }, [isDeleted])
+
+    // const hasPermission = (roles) => {
+    //     const userRole = getUserRole();
+    //     console.log("userRole: ", userRole)
+    //     return roles.includes(userRole);
+    // }
 
     const setContent = () => {
         let content;
@@ -71,19 +79,24 @@ const DriverList = () => {
     }
 
     return (
-        <React.Fragment>
-            {
-                params.records.length > 0 ?
-                <ListTable content={setContent()} params={params}/>
-                    :
+        isAuthenticated() ?
+            <React.Fragment>
+                {
+                    params.records.length > 0 ?
+                        <ListTable content={setContent()} params={params}/>
+                        :
                         <div className="main-content">
                             <h1>{t("no_records_to_show")}</h1>
                             <p className={"section-buttons"}>
                                 <Link to={`${params.parentRoute}/add`} className="button-add">{params.buttonText}</Link>
                             </p>
                         </div>
-            }
-        </React.Fragment>
+                }
+            </React.Fragment>
+            :
+            <div className="main-content">
+                <h1>Braaaak dostępu</h1>
+            </div>
     )
 }
 
