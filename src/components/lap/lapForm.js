@@ -77,6 +77,12 @@ function LapForm(props) {
         }
     }
 
+    const test = () => {
+        console.log("lap", lap);
+        console.log("allDrivers",allDrivers);
+        console.log("allGokarts",allGokarts);
+    }
+
     return (
         (lap || formMode === formModeEnum.NEW) ?
             //<main>
@@ -88,8 +94,8 @@ function LapForm(props) {
                         {
                             driver: lap ? lap.driver : '',
                             gokart: lap ? lap.gokart : '',
-                            gokart_id:'',
-                            driver_id: '',
+                            gokart_id: lap ? lap.gokart.id : '',
+                            driver_id: lap ? lap.driver.id : '',
                             lap_time: lap ? lap.lap_time : '',
                             wet_track: lap ? lap.wet_track.toString() : '',
                         }
