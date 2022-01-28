@@ -8,6 +8,8 @@ import {Form, Formik} from "formik";
 import {getFormattedDate} from "../../helpers/dateHelper";
 import validate from "../../validation/gokartValidation";
 import {useTranslation} from "react-i18next";
+import {getDataById} from "../../apiCalls/getDataById";
+import {isAdmin} from "../../helpers/authHelper";
 
 function GokartForm(props){
     const navigate = useNavigate();
@@ -25,13 +27,13 @@ function GokartForm(props){
     const {t} = useTranslation();
 
     useEffect(() => {
-        if (formMode === formModeEnum.EDIT || formMode === formModeEnum.DETAILS) {
+        if (formMode === formModeEnum.EDIT || formMode === formModeEnum.DETAILS && isAdmin()) {
             getGokartData()
         }
     }, [])
 
     const getGokartData = () => {
-        getGokartByIdApiCall(gokartId)
+        getDataById('/gokarts',gokartId.gokartId)
             .then(res => res.data)
             .then(
                 (data) => {
@@ -55,7 +57,7 @@ function GokartForm(props){
     }
 
     return (
-        (gokart || formMode === formModeEnum.NEW) ?
+        (gokart || formMode === formModeEnum.NEW && isAdmin()) ?
         <React.Fragment>
             <h2>{t(header)}</h2>
             <Formik
@@ -109,7 +111,7 @@ function GokartForm(props){
                         }
 
                         <label htmlFor="model">{t("model")}: <span className="symbol-required">*</span></label>
-                        <input type="text" name="model" id="model" placeholder={t("char2_50")}
+                        <input type="text" name="model" id="model" placeholder={t("char2_20")}
                                value={values.model} onChange={handleChange}
                                disabled={formMode === formModeEnum.DETAILS}
                         />

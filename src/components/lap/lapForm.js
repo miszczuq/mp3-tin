@@ -11,6 +11,9 @@ import {updateData} from "../../apiCalls/updateData";
 import {getDriverApiCall} from "../../apiCalls/driverApiCalls";
 import {getGokartApiCall} from "../../apiCalls/gokartApiCalls";
 import {useTranslation} from "react-i18next";
+import {isAuthenticated} from "../../helpers/authHelper";
+import {getDataById} from "../../apiCalls/getDataById";
+import {getData} from "../../apiCalls/getData";
 
 function LapForm(props) {
     const navigate = useNavigate();
@@ -30,15 +33,20 @@ function LapForm(props) {
     const {t} = useTranslation();
 
     useEffect(() => {
-        getAllGokarts()
-        getAllDrivers()
-        if (formMode === formModeEnum.EDIT || formMode === formModeEnum.DETAILS) {
-            getLapData()
+        if(isAuthenticated()) {
+            getAllGokarts()
+            getAllDrivers()
+            if (formMode === formModeEnum.EDIT || formMode === formModeEnum.DETAILS) {
+                getLapData()
+            }
+        }else{
+            navigate('/users/login');
         }
+
     }, [])
 
     const getAllDrivers = () => {
-        getDriverApiCall()
+        getData('/drivers')
             .then(res => res.data)
             .then((data) => {
                 setAllDrivers(data);
@@ -46,7 +54,7 @@ function LapForm(props) {
     }
 
     const getAllGokarts = () => {
-        getGokartApiCall()
+        getData('/gokarts')
             .then(res => res.data)
             .then((data) => {
                 setAllGokarts(data);
@@ -54,7 +62,7 @@ function LapForm(props) {
     }
 
     const getLapData = () => {
-        getLapByIdApiCall(lapId)
+        getDataById('/driverGokarts',lapId.lapId)
             .then(res => res.data)
             .then(
                 (data) => {

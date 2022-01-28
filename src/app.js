@@ -22,6 +22,7 @@ import LapDetails from "./components/lap/lapDetails";
 import LoginForm from "./components/auth/loginForm";
 import RegisterForm from "./components/auth/registerForm";
 import {getCurrentUser} from "./helpers/authHelper";
+import ProtectedAdminRoute from "./components/auth/ProtectedAdminRoute";
 
 
 function App() {
@@ -57,15 +58,26 @@ function App() {
                     <Route exact path="/drivers/add" element={<DriverFormAdd/>}/>
                     <Route exact path="/drivers/edit/:driverId" element={<DriverFormEdit/>}/>
 
-                    <Route exact path="/gokarts" element={<GokartList/>}/>
-                    <Route exact path="/gokarts/details/:gokartId" element={<GokartDetails/>}/>
-                    <Route exact path="/gokarts/add" element={<GokartFormAdd/>}/>
-                    <Route exact path="/gokarts/edit/:gokartId" element={<GokartFormEdit/>}/>
+                    {/*<Route exact path="/gokarts" element={<GokartList/>}/>*/}
+                    {/*<Route exact path="/gokarts/details/:gokartId" element={<GokartDetails/>}/>*/}
+                    {/*<Route exact path="/gokarts/add" element={<GokartFormAdd/>}/>*/}
+                    {/*<Route exact path="/gokarts/edit/:gokartId" element={<GokartFormEdit/>}/>*/}
+
+                    <Route exact path="/gokarts" element={<ProtectedAdminRoute component={GokartList}/>}/>
+                    <Route exact path="/gokarts/add" element={<ProtectedAdminRoute component={GokartFormAdd}/>}/>
+                    <Route exact path="/gokarts/edit/:gokartId" element={<ProtectedAdminRoute component={GokartFormEdit}/>}/>
+                    <Route exact path="/gokarts/details/:gokartId" element={<ProtectedAdminRoute component={GokartDetails}/>}/>
+
 
                     <Route exact path="/driverGokarts" element={<LapList/>}/>
-                    <Route exact path="/driverGokarts/add" element={<LapFormAdd/>}/>
-                    <Route exact path="/driverGokarts/edit/:lapId" element={<LapFormEdit/>}/>
-                    <Route exact path="/driverGokarts/details/:lapId" element={<LapDetails/>}/>
+
+                    {/*<Route exact path="/driverGokarts/add" element={<LapFormAdd/>}/>*/}
+                    {/*<Route exact path="/driverGokarts/edit/:lapId" element={<LapFormEdit/>}/>*/}
+                    {/*<Route exact path="/driverGokarts/details/:lapId" element={<LapDetails/>}/>*/}
+                    <Route exact path="/driverGokarts/add" element={<ProtectedAdminRoute component={LapFormAdd}/>}/>
+                    <Route exact path="/driverGokarts/edit/:lapId" element={<ProtectedAdminRoute component={LapFormEdit}/>}/>
+                    <Route exact path="/driverGokarts/details/:lapId" element={<ProtectedAdminRoute component={LapDetails}/>}/>
+
 
                     <Route exact path="users/login" element={<LoginForm handleLogin={handleLogin}/>}/>
                     <Route exact path="users/register" element={<RegisterForm/>}/>

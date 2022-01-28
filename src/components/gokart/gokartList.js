@@ -3,14 +3,17 @@ import {getGokartApiCall} from "../../apiCalls/gokartApiCalls";
 import ListTable from "../table/listTable";
 import TableContent from "../table/tableContent";
 import {deleteData} from "../../apiCalls/deleteData";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import {getData} from "../../apiCalls/getData";
+import {isAdmin, isAuthenticated} from "../../helpers/authHelper";
 
 const GokartList = () => {
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
     const [isDeleted, setIsDeleted] = useState(false);
 
+    const navigate = useNavigate();
     const {t} = useTranslation();
 
     const [params, setParams] = useState({
@@ -29,11 +32,14 @@ const GokartList = () => {
     })
 
     const handleDelete = (recordId) => {
-        deleteData(params.parentRoute, recordId)
-            .then(() => {
-            setIsDeleted(!isDeleted);
-        })
-            .catch()
+        if (!isAdmin()) {
+            alert("You have no permision to do this");
+        } else {
+            deleteData(params.parentRoute, recordId)
+                .then(() => {
+                    setIsDeleted(!isDeleted);
+                })
+        }
     }
 
     useEffect(() => {
@@ -56,7 +62,7 @@ const GokartList = () => {
 
     const getMappedGokartData = () => {
         let unwrap = ({id, brand, model, horse_power, weight}) => ({id, columns: [brand, model, horse_power, weight]})
-        getGokartApiCall()
+        getData(params.parentRoute)
             .then(res => res.data
                 .map(gokart => unwrap(gokart)))
             .then(
@@ -75,19 +81,34 @@ const GokartList = () => {
     }
 
     return (
-        <React.Fragment>
-            {
-                params.records.length > 0 ?
-                    <ListTable content={setContent()} params={params}/>
-                    :
+        !isAuthenticated() ?
+            <React.Fragment>{
+                navigate('/users/login')
+            }</React.Fragment> :
+
+            !isAdmin() ?
+                <React.Fragment>
                     <div className="main-content">
-                        <h1>{t("no_records_to_show")}</h1>
-                        <p className={"section-buttons"}>
-                            <Link to={`${params.parentRoute}/add`} className="button-add">{t(params.buttonText)}</Link>
-                        </p>
+                        <h1>{t("no_access")}</h1>
                     </div>
-            }
-        </React.Fragment>
+                </React.Fragment>
+                :
+
+            <React.Fragment>
+                {
+                    params.records.length > 0 ?
+                        <ListTable content={setContent()} params={params}/>
+                        :
+
+                        <div className="main-content">
+                            <h1>{t("no_records_to_show")}</h1>
+                            <p className={"section-buttons"}>
+                                <Link to={`${params.parentRoute}/add`}
+                                      className="button-add">{t(params.buttonText)}</Link>
+                            </p>
+                        </div>
+                }
+            </React.Fragment>
     )
 }
 

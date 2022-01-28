@@ -7,19 +7,12 @@ export function getCurrentUser()
 
 export function isAuthenticated()
 {
-    console.log("isAuthenticated")
     const user=getCurrentUser()
-    console.log("afterCurrentUser")
     return !!user;
 }
 
 export function isAdmin()
 {
-    const user=getCurrentUser()
-    if(user && user.isAdmin===true)
-    {
-        console.log(user.isAdmin)
-        return true;
-    }
-    return false
+    const user = getCurrentUser()
+    return user && user.role === 'Admin';
 }

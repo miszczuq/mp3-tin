@@ -46,7 +46,7 @@ function RegisterForm() {
                     <Form onSubmit={handleSubmit} className="form">
 
                         <label htmlFor="username">{t("username")}: <span className="symbol-required">*</span></label>
-                        <input type="text" name="username" id="username" placeholder="2-20 znaków"
+                        <input type="text" name="username" id="username" placeholder={t('char2_10')}
                                value={values.username} onChange={handleChange}
                         />
                         {errors.username && touched.username ? (
@@ -56,7 +56,7 @@ function RegisterForm() {
                         }
 
                         <label htmlFor="password">{t("password")}: <span className="symbol-required">*</span></label>
-                        <input type="password" name="password" id="password" placeholder="2-20 znaków"
+                        <input type="password" name="password" id="password" placeholder={t('char2_50')}
                                onChange={handleChange}
                                value={values.password}
                         />
@@ -67,7 +67,7 @@ function RegisterForm() {
                         }
 
                         <label htmlFor="confirm_password">{t("confirm_password")}: <span className="symbol-required">*</span></label>
-                        <input type="password" name="confirm_password" id="confirm_password" placeholder="2-20 znaków"
+                        <input type="password" name="confirm_password" id="confirm_password" placeholder={t('char2_50')}
                                onChange={handleChange}
                         />
                         {errors.confirm_password && touched.confirm_password ? (

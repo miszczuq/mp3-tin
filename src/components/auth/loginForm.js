@@ -114,7 +114,7 @@ function LoginForm(props) {
                     <Form onSubmit={handleSubmit} className="form">
 
                         <label htmlFor="username">{t("username")}: <span className="symbol-required">*</span></label>
-                        <input type="text" name="username" id="username" placeholder="2-20 znaków"
+                        <input type="text" name="username" id="username" placeholder={t('char2_10')}
                                value={values.username} onChange={handleChange}
                         />
                         {errors.username && touched.username ? (
@@ -124,7 +124,7 @@ function LoginForm(props) {
                         }
 
                         <label htmlFor="password">{t("password")}: <span className="symbol-required">*</span></label>
-                        <input type="password" name="password" id="password" placeholder="2-20 znaków"
+                        <input type="password" name="password" id="password" placeholder={t('char2_50')}
                                value={values.password} onChange={handleChange}
                         />
                         {errors.password && touched.password ? (
@@ -133,7 +133,7 @@ function LoginForm(props) {
                             : ''
                         }
 
-                        <label htmlFor="response_error" className={"error-message"}>{message}</label>
+                        <label htmlFor="response_error" className={"error-message"}>{t(message)}</label>
 
                         <div className="form-buttons">
                             <button onClick={() => {

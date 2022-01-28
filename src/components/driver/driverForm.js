@@ -10,6 +10,7 @@ import formModeEnum from "../../helpers/formHelper";
 import {updateData} from "../../apiCalls/updateData";
 import {useTranslation} from "react-i18next";
 import {getCurrentUser} from "../../helpers/authHelper";
+import {getDataById} from "../../apiCalls/getDataById";
 
 function DriverForm(props) {
     const navigate = useNavigate();
@@ -34,16 +35,22 @@ function DriverForm(props) {
     }, [])
 
     const getDriverData = () => {
-        getDriverByIdApiCall(driverId)
+        getDataById('/drivers',driverId.driverId)
             .then(res => res.data)
             .then(
                 (data) => {
-                    setDriver(data);
+                    if(!data){
+                        setDriver(null);
+                        setError({message: 'i18next'})
+                    }else{
+                        setDriver(data);
+                        setError(null)
+                    }
                     setIsLoaded(true);
                 },
                 (error) => {
                     setIsLoaded(true);
-                    setError(error);
+                    setError({message: 'i18next niepowodzenie'});
                 }
             )
     }
@@ -187,7 +194,7 @@ function DriverForm(props) {
             </React.Fragment>
             // </div>
             //</main>
-            : <h1>LOADING</h1>
+            : <h1>{t('no_access')}</h1>
     )
 }
 

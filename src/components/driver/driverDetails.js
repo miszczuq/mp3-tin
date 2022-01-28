@@ -1,63 +1,67 @@
 import React, {useEffect, useState} from 'react'
-import {Link, useParams} from 'react-router-dom'
+import {Link, useNavigate, useParams} from 'react-router-dom'
 import {getDriverByIdApiCall} from '../../apiCalls/driverApiCalls'
 import DriverDetailsData from "./driverDetailsData";
 import {useTranslation} from "react-i18next";
+import {isAuthenticated} from "../../helpers/authHelper";
+import {getDataById} from "../../apiCalls/getDataById";
 
 function DriverDetails() {
     //const {id} = useParams()
     const {t} = useTranslation();
+    const navigate = useNavigate();
 
     const [driverId, setDriverId] = useState(useParams())
     const [driver, setDriver] = useState(null)
     const [error, setError] = useState(null)
     const [isLoaded, setIsLoaded] = useState(false)
-    const [message, setMessage] = useState(null)
 
     useEffect(() => {
-        checkState();
         getDriverData();
+        checkState();
     }, [])
 
     const checkState = () => {
-        let content;
-
+        console.log("Before error in checkState")
         if (error) {
-            content = <p>Błąd: {error.message}</p>
+            console.log("IfError ", error)
+            return  <p>{t("error")}: {error.message}</p>
         } else if (!isLoaded) {
-            content = <p>Ladowanie danych kierowcy</p>
-        } else if (message) {
-            content = <p>{message}</p>
+            return  <p>{t("data_loading")}</p>
         } else {
-            content = <DriverDetailsData driverData={driver}/>
+            console.log("Before error in checkState, DRIVER", driver)
+            return <DriverDetailsData driverData={driver}/>
         }
-
-        return content
     }
 
     const getDriverData = () => {
-        getDriverByIdApiCall(driverId)
+        getDataById('/drivers',driverId.driverId)
             .then(res => res.data)
             .then(
                 (data) => {
-                    if (data.message) {
+                    if(!data){
                         setDriver(null);
-                        setMessage(data.message);
-                    } else {
+                        setError({message: 'i18next'})
+                    }else{
                         setDriver(data);
-                        setMessage(null);
+                        setError(null)
                     }
-                    setIsLoaded(true)
+                    setIsLoaded(true);
                 },
                 (error) => {
                     setIsLoaded(true);
-                    setError(error);
+                    setError({message: 'i18next niepowodzenie'});
                 }
             )
     }
 
     return (
-        <main>
+        !isAuthenticated() ?
+            <React.Fragment>{
+                navigate('/users/login')
+            }</React.Fragment> :
+
+            <main>
             <div className={"main-content"}>
                 {checkState()}
                 <div className="form-buttons">

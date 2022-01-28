@@ -1,8 +1,7 @@
 import axios from 'axios'
 import {getCurrentUser} from "../helpers/authHelper";
 
-export const updateData = async (route, recordId, data) => {
-    console.log("BeforeAxiosPut data: ", data)
+export const getData = (route) => {
     let user = getCurrentUser();
     let headers = {};
     if(user) {
@@ -13,7 +12,8 @@ export const updateData = async (route, recordId, data) => {
             'Authorization': 'Bearer ' + token
         }
     }
-    return axios.put(`http://localhost:3000/${route}/${recordId}`, data,{headers})
+
+    return axios.get(`http://localhost:3000/api${route}`,{headers})
         .then(res => {
             return res;
         })

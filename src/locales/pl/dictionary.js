@@ -2,7 +2,9 @@ export const DICTIONARY_PL = {
     logout: "Wyloguj",
     char2_20: "2-20 znaków",
     char2_9: "2-9 znaków",
-    char2_50: "2-50 znaków",
+    char2_50: "5-50 znaków",
+    char2_10: "2-10 znaków",
+    wrong_creds: 'Nieprawidłowa nazwa lub hasło!',
 
     no_access: "Brak dostępu",
     register: "Zarejestruj",

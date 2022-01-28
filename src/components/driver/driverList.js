@@ -4,8 +4,9 @@ import TableContent from "../table/tableContent";
 import ListTable from "../table/listTable";
 import {deleteData} from "../../apiCalls/deleteData";
 import {Link, useNavigate} from "react-router-dom";
-import {isAuthenticated} from "../../helpers/authHelper";
+import {isAdmin, isAuthenticated} from "../../helpers/authHelper";
 import {getDriverApiCall} from "../../apiCalls/driverApiCalls";
+import {getData} from "../../apiCalls/getData";
 
 const DriverList = () => {
     const {t} = useTranslation();
@@ -30,11 +31,8 @@ const DriverList = () => {
     })
 
     const handleDelete = (recordId) => {
-        deleteData(params.parentRoute, recordId).then(() => {
-            setIsDeleted(!isDeleted);
-        })
-            .catch(e => {
-                //TODO: Make popup when user get 401
+            deleteData(params.parentRoute, recordId).then(() => {
+                setIsDeleted(!isDeleted);
             })
     }
 
@@ -63,7 +61,7 @@ const DriverList = () => {
 
     const getMappedDriverData = () => {
         let subset = ({id, first_name, last_name, weight}) => ({id, columns: [first_name, last_name, weight]})
-        getDriverApiCall()
+        getData('/drivers')
             .then(res => res.data
                 .map(driver => subset(driver)))
             .then(
@@ -79,6 +77,9 @@ const DriverList = () => {
                     setError(error);
                 }
             )
+            .catch(err => {
+                setError({message: 'TEST'})
+            })
     }
 
     return (

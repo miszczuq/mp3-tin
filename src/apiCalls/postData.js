@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {getCurrentUser} from "../helpers/authHelper";
 
-export const postData = async (route, data) => {
+export const postData = (route, data) => {
     console.log("PostingData")
     let user = getCurrentUser();
     let headers = {};

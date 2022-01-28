@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useParams} from 'react-router-dom'
-import {getGokartByIdApiCall} from '../../apiCalls/gokartApiCalls'
+import {getDataById} from "../../apiCalls/getDataById";
 import GokartDetailsData from "./gokartDetailsData";
 import {useTranslation} from "react-i18next";
 
@@ -35,7 +35,7 @@ function GokartDetails() {
     }
 
     const getGokartData = () => {
-        getGokartByIdApiCall(gokartId)
+        getDataById('/gokarts',gokartId.gokartId)
             .then(res => res.data)
             .then(
                 (data) => {

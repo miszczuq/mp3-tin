@@ -6,6 +6,8 @@ import TableContent from "../table/tableContent";
 import ListTable from "../table/listTable";
 import {deleteData} from "../../apiCalls/deleteData";
 import {Link} from "react-router-dom";
+import {getData} from "../../apiCalls/getData";
+import {isAdmin, isAuthenticated} from "../../helpers/authHelper";
 
 const LapList = () => {
     const {t} = useTranslation();
@@ -30,10 +32,18 @@ const LapList = () => {
     })
 
     const handleDelete = (recordId) => {
-        deleteData(params.parentRoute, recordId).then(() => {
-            setIsDeleted(!isDeleted);
-            alert("Hello! I am an alert box!!");
-        })
+        if (!isAdmin()) {
+            alert("You have no permision to do this");
+        } else {
+            deleteData(params.parentRoute, recordId).then(() => {
+                setIsDeleted(!isDeleted);
+            })
+        }
+    }
+    const handleButtons = () => {
+        if (!isAdmin()) {
+            alert("You have no permision to do this");
+        }
     }
 
     useEffect(() => {
@@ -54,11 +64,14 @@ const LapList = () => {
     }
 
     const getMappedLapData = () => {
-        let subset = ({id, driver, gokart, lap_time, wet_track}) => ({id, columns: [driver.first_name+' '+ driver.last_name, gokart.model, lap_time, wet_track]})
-        getLapApiCall()
+        let subset = ({id, driver, gokart, lap_time, wet_track}) => ({
+            id,
+            columns: [driver.first_name + ' ' + driver.last_name, gokart.model, lap_time, wet_track]
+        })
+        getData(params.parentRoute)
             .then(res => res.data
                 .map(lap => subset(lap)))
-            .then(e =>{
+            .then(e => {
                 console.log(e);
                 return e;
             })
@@ -86,7 +99,8 @@ const LapList = () => {
                     <div className="main-content">
                         <h1>{t("no_records_to_show")}</h1>
                         <p className={"section-buttons"}>
-                            <Link to={`${params.parentRoute}/add`} className="button-add">{t(params.buttonText)}</Link>
+                            <Link to={`${params.parentRoute}/add`}
+                                  className="button-add">{t(params.buttonText)}</Link>
                         </p>
                     </div>
             }
