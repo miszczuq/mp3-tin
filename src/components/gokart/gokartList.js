@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import {getGokartApiCall} from "../../apiCalls/gokartApiCalls";
 import ListTable from "../table/listTable";
 import TableContent from "../table/tableContent";
 import {deleteData} from "../../apiCalls/deleteData";
@@ -79,7 +78,6 @@ const GokartList = () => {
                 }
             )
     }
-
     return (
         !isAuthenticated() ?
             <React.Fragment>{
@@ -94,21 +92,21 @@ const GokartList = () => {
                 </React.Fragment>
                 :
 
-            <React.Fragment>
-                {
-                    params.records.length > 0 ?
-                        <ListTable content={setContent()} params={params}/>
-                        :
+                <React.Fragment>
+                    {
+                        params.records.length > 0 ?
+                            <ListTable content={setContent()} params={params}/>
+                            :
 
-                        <div className="main-content">
-                            <h1>{t("no_records_to_show")}</h1>
-                            <p className={"section-buttons"}>
-                                <Link to={`${params.parentRoute}/add`}
-                                      className="button-add">{t(params.buttonText)}</Link>
-                            </p>
-                        </div>
-                }
-            </React.Fragment>
+                            <div className="main-content">
+                                <h1>{t("no_records_to_show")}</h1>
+                                <p className={"section-buttons"}>
+                                    <Link to={`${params.parentRoute}/add`}
+                                          className="button-add">{t(params.buttonText)}</Link>
+                                </p>
+                            </div>
+                    }
+                </React.Fragment>
     )
 }
 

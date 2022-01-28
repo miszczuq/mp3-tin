@@ -33,7 +33,7 @@ function GokartDetailsData(props) {
                     {gokart.laps.map(
                         lap =>
                             <tr key={lap.id}>
-                                <td>{lap.driver.first_name+' '+lap.driver.last_name}</td>
+                                <td>{lap.driver.first_name + ' ' + lap.driver.last_name}</td>
                                 <td>{lap.lap_time}</td>
                                 <td>{lap.wet_track ? t("wet") : t("dry")}</td>
                             </tr>

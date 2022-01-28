@@ -3,7 +3,6 @@ import {i18n} from "../../locales/i18n";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import {isAuthenticated} from "../../helpers/authHelper";
-import {logoutApiCall} from "../../apiCalls/userApiCalls";
 
 function Header(props) {
 

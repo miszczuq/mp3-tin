@@ -4,8 +4,7 @@ import TableContent from "../table/tableContent";
 import ListTable from "../table/listTable";
 import {deleteData} from "../../apiCalls/deleteData";
 import {Link, useNavigate} from "react-router-dom";
-import {isAdmin, isAuthenticated} from "../../helpers/authHelper";
-import {getDriverApiCall} from "../../apiCalls/driverApiCalls";
+import {isAuthenticated} from "../../helpers/authHelper";
 import {getData} from "../../apiCalls/getData";
 
 const DriverList = () => {
@@ -31,20 +30,14 @@ const DriverList = () => {
     })
 
     const handleDelete = (recordId) => {
-            deleteData(params.parentRoute, recordId).then(() => {
-                setIsDeleted(!isDeleted);
-            })
+        deleteData(params.parentRoute, recordId).then(() => {
+            setIsDeleted(!isDeleted);
+        })
     }
 
     useEffect(() => {
         getMappedDriverData();
     }, [isDeleted])
-
-    // const hasPermission = (roles) => {
-    //     const userRole = getUserRole();
-    //     console.log("userRole: ", userRole)
-    //     return roles.includes(userRole);
-    // }
 
     const setContent = () => {
         let content;
@@ -96,14 +89,12 @@ const DriverList = () => {
                         <div className="main-content">
                             <h1>{t("no_records_to_show")}</h1>
                             <p className={"section-buttons"}>
-                                <Link to={`${params.parentRoute}/add`} className="button-add">{t(params.buttonText)}</Link>
+                                <Link to={`${params.parentRoute}/add`}
+                                      className="button-add">{t(params.buttonText)}</Link>
                             </p>
                         </div>
                 }
             </React.Fragment>
-            // <div className="main-content">
-            //     <h1>{t("no_access")}</h1>
-            // </div>
     )
 }
 

@@ -7,20 +7,6 @@ function DriverDetailsData(props) {
     const driver = props.driverData
     const {t} = useTranslation();
 
-    // const [params, setParams] = useState({
-    //     header: "Lista Kierowców",
-    //     buttonText: "Dodaj nowego kierowcę",
-    //     tableColumnHeaders: [
-    //         "Imie",
-    //         "Nazwisko",
-    //         "Waga(kg)",
-    //         "Akcje"
-    //     ],
-    //     parentRoute: "/drivers",
-    //     cssClassName: "driver",
-    //     records: []
-    // })
-
     const [params, setParams] = useState({
         header: "driver_details",
         buttonText: t("edit"),
@@ -47,7 +33,7 @@ function DriverDetailsData(props) {
                     {driver.laps.map(
                         lap =>
                             <tr key={lap.id}>
-                                <td>{lap.gokart.model+' '+lap.gokart.brand}</td>
+                                <td>{lap.gokart.model + ' ' + lap.gokart.brand}</td>
                                 <td>{lap.lap_time}</td>
                                 <td>{lap.wet_track ? t("wet") : t("dry")}</td>
                             </tr>

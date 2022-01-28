@@ -66,7 +66,8 @@ function RegisterForm() {
                             : ''
                         }
 
-                        <label htmlFor="confirm_password">{t("confirm_password")}: <span className="symbol-required">*</span></label>
+                        <label htmlFor="confirm_password">{t("confirm_password")}: <span
+                            className="symbol-required">*</span></label>
                         <input type="password" name="confirm_password" id="confirm_password" placeholder={t('char2_50')}
                                onChange={handleChange}
                         />

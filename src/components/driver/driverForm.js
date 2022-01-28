@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useNavigate, useParams} from 'react-router-dom'
-
-import {getDriverByIdApiCall} from "../../apiCalls/driverApiCalls";
 import {Form, Formik} from "formik";
 import {getFormattedDate} from "../../helpers/dateHelper";
 import {postData} from "../../apiCalls/postData";
@@ -35,14 +33,14 @@ function DriverForm(props) {
     }, [])
 
     const getDriverData = () => {
-        getDataById('/drivers',driverId.driverId)
+        getDataById('/drivers', driverId.driverId)
             .then(res => res.data)
             .then(
                 (data) => {
-                    if(!data){
+                    if (!data) {
                         setDriver(null);
                         setError({message: 'i18next'})
-                    }else{
+                    } else {
                         setDriver(data);
                         setError(null)
                     }
@@ -58,16 +56,14 @@ function DriverForm(props) {
     const submitForm = (values) => {
         if (formMode === formModeEnum.NEW) {
             return postData("api" + route, values)
-        }else if(formMode === formModeEnum.EDIT){
+        } else if (formMode === formModeEnum.EDIT) {
             values.id = parseInt(driverId.driverId);
-            return updateData("api" + route,driverId.driverId, values)
+            return updateData("api" + route, driverId.driverId, values)
         }
     }
 
     return (
         (driver || formMode === formModeEnum.NEW) ?
-            //<main>
-            //<div className="main-content">
             <React.Fragment>
                 <h2>{t(header)}</h2>
                 <Formik
@@ -84,16 +80,9 @@ function DriverForm(props) {
                     async (values) => {
                         await submitForm(values)
                             .then(() => {
-                                    navigate(route);
-                                });
+                                navigate(route);
+                            });
                     }
-
-                    // async (values) => {
-                    //     await postData("api"+route, values)
-                    //         .then(() => {
-                    //             navigate('/drivers');
-                    //         })
-                    // }
                 }
                     validationSchema={validate}
                 >
@@ -109,7 +98,8 @@ function DriverForm(props) {
                       }) => (
                         <Form onSubmit={handleSubmit} className="form">
 
-                            <label htmlFor="first_name">{t("first_name")}: <span className="symbol-required">*</span></label>
+                            <label htmlFor="first_name">{t("first_name")}: <span
+                                className="symbol-required">*</span></label>
                             <input type="text" name="first_name" id="first_name" placeholder={t("char2_20")}
                                    value={values.first_name} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
@@ -120,7 +110,8 @@ function DriverForm(props) {
                                 : ''
                             }
 
-                            <label htmlFor="last_name">{t("last_name")}: <span className="symbol-required">*</span></label>
+                            <label htmlFor="last_name">{t("last_name")}: <span
+                                className="symbol-required">*</span></label>
                             <input type="text" name="last_name" id="last_name" placeholder={t("char2_20")}
                                    value={values.last_name} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
@@ -170,7 +161,8 @@ function DriverForm(props) {
 
                             <div className="form-buttons">
                                 {formMode === formModeEnum.DETAILS ?
-                                    <Link to={`/drivers/edit/${driverId.driverId}`} className="form-button-edit">{t("edit")}</Link>
+                                    <Link to={`/drivers/edit/${driverId.driverId}`}
+                                          className="form-button-edit">{t("edit")}</Link>
                                     :
                                     <React.Fragment>
                                         <button onClick={() => {
@@ -192,8 +184,6 @@ function DriverForm(props) {
                     )}
                 </Formik>
             </React.Fragment>
-            // </div>
-            //</main>
             : <h1>{t('no_access')}</h1>
     )
 }

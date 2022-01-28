@@ -1,10 +1,8 @@
 import React, {useState} from 'react'
 import formModeEnum from "../../helpers/formHelper";
 import GokartForm from "./gokartForm";
-import {useTranslation} from "react-i18next";
 
 function GokartFormAdd() {
-    const {t} = useTranslation();
 
     const [params, setParams] = useState({
         header: "new_gokart",

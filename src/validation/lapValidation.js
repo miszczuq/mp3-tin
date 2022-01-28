@@ -1,5 +1,4 @@
 import * as Yup from "yup";
-import {useTranslation} from "react-i18next";
 import i18n from "i18next";
 
 const validate = Yup.object().shape({

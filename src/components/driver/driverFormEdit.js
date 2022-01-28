@@ -22,8 +22,8 @@ function DriverFormEdit() {
             }</React.Fragment> :
 
             <div className={"main-content"}>
-            <DriverForm params={params}/>
-        </div>
+                <DriverForm params={params}/>
+            </div>
     )
 }
 

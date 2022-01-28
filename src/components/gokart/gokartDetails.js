@@ -35,7 +35,7 @@ function GokartDetails() {
     }
 
     const getGokartData = () => {
-        getDataById('/gokarts',gokartId.gokartId)
+        getDataById('/gokarts', gokartId.gokartId)
             .then(res => res.data)
             .then(
                 (data) => {

@@ -28,7 +28,6 @@ import ProtectedAdminRoute from "./components/auth/ProtectedAdminRoute";
 function App() {
 
     const [user, setUser] = useState('');
-    const [prevPath, setPrevPath] = useState('');
 
     const handleLogin = (user) =>{
         localStorage.setItem("user", user)
@@ -53,7 +52,6 @@ function App() {
                     <Route exact path="/" element={<MainPage/>}/>
 
                     <Route exact path="/drivers" element={<DriverList/>}/>
-                    {/*<Route exact path="/drivers" element={<DriverList apiRequestFunction={getDriverApiCall()}/>}/>*/}
                     <Route exact path="/drivers/details/:driverId" element={<DriverDetails/>}/>
                     <Route exact path="/drivers/add" element={<DriverFormAdd/>}/>
                     <Route exact path="/drivers/edit/:driverId" element={<DriverFormEdit/>}/>

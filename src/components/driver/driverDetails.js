@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useNavigate, useParams} from 'react-router-dom'
-import {getDriverByIdApiCall} from '../../apiCalls/driverApiCalls'
 import DriverDetailsData from "./driverDetailsData";
 import {useTranslation} from "react-i18next";
 import {isAuthenticated} from "../../helpers/authHelper";
 import {getDataById} from "../../apiCalls/getDataById";
 
 function DriverDetails() {
-    //const {id} = useParams()
     const {t} = useTranslation();
     const navigate = useNavigate();
 
@@ -25,9 +23,9 @@ function DriverDetails() {
         console.log("Before error in checkState")
         if (error) {
             console.log("IfError ", error)
-            return  <p>{t("error")}: {error.message}</p>
+            return <p>{t("error")}: {error.message}</p>
         } else if (!isLoaded) {
-            return  <p>{t("data_loading")}</p>
+            return <p>{t("data_loading")}</p>
         } else {
             console.log("Before error in checkState, DRIVER", driver)
             return <DriverDetailsData driverData={driver}/>
@@ -35,14 +33,14 @@ function DriverDetails() {
     }
 
     const getDriverData = () => {
-        getDataById('/drivers',driverId.driverId)
+        getDataById('/drivers', driverId.driverId)
             .then(res => res.data)
             .then(
                 (data) => {
-                    if(!data){
+                    if (!data) {
                         setDriver(null);
                         setError({message: 'i18next'})
-                    }else{
+                    } else {
                         setDriver(data);
                         setError(null)
                     }
@@ -62,13 +60,13 @@ function DriverDetails() {
             }</React.Fragment> :
 
             <main>
-            <div className={"main-content"}>
-                {checkState()}
-                <div className="form-buttons">
-                    <Link to="/drivers" className="form-button-details-back">{t("back")}</Link>
+                <div className={"main-content"}>
+                    {checkState()}
+                    <div className="form-buttons">
+                        <Link to="/drivers" className="form-button-details-back">{t("back")}</Link>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
     )
 }
 

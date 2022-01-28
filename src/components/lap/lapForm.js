@@ -1,15 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {Link, useNavigate, useParams} from 'react-router-dom'
-
-import {getLapByIdApiCall} from "../../apiCalls/lapApiCalls";
-import {Form, Formik, Field} from "formik";
-import {getFormattedDate} from "../../helpers/dateHelper";
+import {Field, Form, Formik} from "formik";
 import {postData} from "../../apiCalls/postData";
 import validate from "../../validation/lapValidation";
 import formModeEnum from "../../helpers/formHelper";
 import {updateData} from "../../apiCalls/updateData";
-import {getDriverApiCall} from "../../apiCalls/driverApiCalls";
-import {getGokartApiCall} from "../../apiCalls/gokartApiCalls";
 import {useTranslation} from "react-i18next";
 import {isAuthenticated} from "../../helpers/authHelper";
 import {getDataById} from "../../apiCalls/getDataById";
@@ -33,13 +28,13 @@ function LapForm(props) {
     const {t} = useTranslation();
 
     useEffect(() => {
-        if(isAuthenticated()) {
+        if (isAuthenticated()) {
             getAllGokarts()
             getAllDrivers()
             if (formMode === formModeEnum.EDIT || formMode === formModeEnum.DETAILS) {
                 getLapData()
             }
-        }else{
+        } else {
             navigate('/users/login');
         }
 
@@ -62,7 +57,7 @@ function LapForm(props) {
     }
 
     const getLapData = () => {
-        getDataById('/driverGokarts',lapId.lapId)
+        getDataById('/driverGokarts', lapId.lapId)
             .then(res => res.data)
             .then(
                 (data) => {
@@ -79,16 +74,14 @@ function LapForm(props) {
     const submitForm = (values) => {
         if (formMode === formModeEnum.NEW) {
             return postData("api" + route, values)
-        }else if(formMode === formModeEnum.EDIT){
+        } else if (formMode === formModeEnum.EDIT) {
             values.id = parseInt(lapId.lapId);
-            return updateData("api" + route,lapId.lapId, values)
+            return updateData("api" + route, lapId.lapId, values)
         }
     }
 
     return (
         (lap || formMode === formModeEnum.NEW) ?
-            //<main>
-            //<div className="main-content">
             <React.Fragment>
                 <h2>{t(header)}</h2>
                 <Formik
@@ -108,13 +101,6 @@ function LapForm(props) {
                                 navigate(route);
                             });
                     }
-
-                    // async (values) => {
-                    //     await postData("api"+route, values)
-                    //         .then(() => {
-                    //             navigate('/driverGokarts');
-                    //         })
-                    // }
                 }
                     validationSchema={validate}
                 >
@@ -131,22 +117,13 @@ function LapForm(props) {
                         <Form className="form">
 
                             <label htmlFor="driver_id">{t("driver")}: <span className="symbol-required">*</span></label>
-                            {/*<select name={"driver_id"} id={"driver_id"} required disabled={formMode === formModeEnum.DETAILS}>*/}
-                            {/*    <option value={''}>=== Wybierz Kierowcę ===</option>*/}
-                            {/*    {*/}
-                            {/*        allDrivers.map(driver =>*/}
-                            {/*            <option key={driver.id} value={driver.id} label={driver.first_name+' '+driver.last_name}*/}
-                            {/*                    selected={lap && driver.id === parseInt(lap.driver.id)}> </option>*/}
-                            {/*        )*/}
-
-                            {/*    }*/}
-                            {/*</select>*/}
                             <Field as={"select"} name={"driver_id"} disabled={formMode === formModeEnum.DETAILS}>
                                 <option value={''}>=== ===</option>
                                 {
                                     allDrivers.map(driver =>
-                                        <option key={driver.id} value={driver.id} label={driver.first_name+' '+driver.last_name}
-                                                selected={lap && driver.id === parseInt(lap.driver.id)}> </option>
+                                        <option key={driver.id} value={driver.id}
+                                                label={driver.first_name + ' ' + driver.last_name}
+                                                selected={lap && driver.id === parseInt(lap.driver.id)}></option>
                                     )
 
                                 }
@@ -158,25 +135,14 @@ function LapForm(props) {
                             }
 
                             <label htmlFor="gokart_id">{t("gokart")}: <span className="symbol-required">*</span></label>
-                            {/*<select name={"gokart_id"} id={"gokart_id"} required disabled={formMode === formModeEnum.DETAILS}>*/}
-                            {/*    <option value={''}>=== Wybierz Gokart ===</option>*/}
-                            {/*    {*/}
-                            {/*        allGokarts.map(gokart =>*/}
-                            {/*            <option key={gokart.id} value={gokart.id} label={gokart.model+' '+gokart.brand}*/}
-                            {/*                    selected={lap && gokart.id === parseInt(lap.gokart.id)}> </option>*/}
-                            {/*        )*/}
-
-                            {/*    }*/}
-                            {/*</select>*/}
-
                             <Field as={"select"} name={"gokart_id"} disabled={formMode === formModeEnum.DETAILS}>
                                 <option value={''}>=== ===</option>
                                 {
                                     allGokarts.map(gokart =>
-                                        <option key={gokart.id} value={gokart.id} label={gokart.brand+' '+gokart.model}
-                                                selected={lap && gokart.id === parseInt(lap.gokart.id)}> </option>
+                                        <option key={gokart.id} value={gokart.id}
+                                                label={gokart.brand + ' ' + gokart.model}
+                                                selected={lap && gokart.id === parseInt(lap.gokart.id)}></option>
                                     )
-
                                 }
                             </Field>
                             {errors.gokart_id && touched.gokart_id ? (
@@ -184,7 +150,8 @@ function LapForm(props) {
                                 )
                                 : ''
                             }
-                            <label htmlFor="lap_time">{t("lap_time")}: <span className="symbol-required">*</span></label>
+                            <label htmlFor="lap_time">{t("lap_time")}: <span
+                                className="symbol-required">*</span></label>
                             <input type="number" name="lap_time" id="lap_time"
                                    value={values.lap_time} onChange={handleChange}
                                    disabled={formMode === formModeEnum.DETAILS}
@@ -200,16 +167,16 @@ function LapForm(props) {
 
                             <div className={"form-radio"}>
                                 <label>
-                                    <Field  type={"radio"} name="wet_track" id={"wet"} value={"true"}
-                                            disabled={formMode === formModeEnum.DETAILS}
-                                            checked={values.wet_track === "true"}
+                                    <Field type={"radio"} name="wet_track" id={"wet"} value={"true"}
+                                           disabled={formMode === formModeEnum.DETAILS}
+                                           checked={values.wet_track === "true"}
                                     />
                                     {t("wet")}
                                 </label>
                                 <label>
-                                    <Field  type={"radio"} name="wet_track" id={"dry"} value={"false"}
-                                            disabled={formMode === formModeEnum.DETAILS}
-                                            checked={values.wet_track === "false"}
+                                    <Field type={"radio"} name="wet_track" id={"dry"} value={"false"}
+                                           disabled={formMode === formModeEnum.DETAILS}
+                                           checked={values.wet_track === "false"}
                                     />
                                     {t("dry")}
 
@@ -225,23 +192,19 @@ function LapForm(props) {
 
                             <div className="form-buttons">
                                 {formMode === formModeEnum.DETAILS ?
-                                    <Link to={`/driverGokarts/edit/${lapId.lapId}`} className="form-button-edit">{t("edit")}</Link>
+                                    <Link to={`/driverGokarts/edit/${lapId.lapId}`}
+                                          className="form-button-edit">{t("edit")}</Link>
                                     :
                                     <React.Fragment>
                                         <button
                                             onClick={() => {
-                                            validateForm().then(
-                                                (res) => {
-                                                    // if (Object.keys(res).length === 0) {
-                                                    //     handleSubmit()
-                                                    // } else {
-                                                    //     setErrors(res)
-                                                    // }
-                                                    setErrors(res);
-                                                }
-                                            );
-                                        }}
-                                                className="form-button-submit"
+                                                validateForm().then(
+                                                    (res) => {
+                                                        setErrors(res);
+                                                    }
+                                                );
+                                            }}
+                                            className="form-button-submit"
                                         >
                                             {t(buttonText)}
                                         </button>
@@ -253,9 +216,7 @@ function LapForm(props) {
                     )}
                 </Formik>
             </React.Fragment>
-            // </div>
-            //</main>
-            : <h1>LOADING</h1>
+            : <h1>{t('no_access')}</h1>
     )
 }
 

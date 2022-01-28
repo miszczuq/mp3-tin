@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import {Form, Formik} from "formik";
-import {postData} from "../../apiCalls/postData";
 import validate from "../../validation/loginValidation";
 import {useTranslation} from "react-i18next";
 import {loginApiCall} from "../../apiCalls/userApiCalls";
@@ -9,32 +8,7 @@ import {loginApiCall} from "../../apiCalls/userApiCalls";
 function LoginForm(props) {
     const navigate = useNavigate();
     const {t} = useTranslation();
-
-    // const [user, setUser] = useState({
-    //     username: '',
-    //     password: '',
-    // })
-    //
-    // const [errors, setErrors] = useState({
-    //     username: '',
-    //     password: '',
-    // })
-     const [message, setMessage]= useState('');
-    // const [error, setError]= useState('');
-    // const [prevPath, setPrevPath]= useState('');
-
-    // const handleChange = (event) =>{
-    //     const {name, value} = event.target
-    //     const user = {...user}
-    //     user[name] = value
-    //
-    //     //const errorMessage = validateField(name, value)
-    //     //const errors = {...errors};
-    //     //errors[name] = errorMessage
-    //
-    //     setUser(user);
-    //     setErrors(errors);
-    // }
+    const [message, setMessage] = useState('');
 
     const handleSubmit = (user) => {
         loginApiCall(user)
@@ -51,30 +25,7 @@ function LoginForm(props) {
                     console.log("in401Error", response.status)
                     setMessage(data.message)
                 }
-
-
-
-        // const response = loginApiCall(user)
-        //     .then(res =>{
-        //         console.log("Res ", res)
-        //         return res.data;
-        //     })
-        //     .then((data) => {
-        //         console.log("FormData", data)
-        //         if(response.status === 200){
-        //             console.log("Before hangle login 200")
-        //             if(data.token){
-        //                 console.log("data.Token Found")
-        //                 //const userString = JSON.stringify(data)
-        //                 props.handleLogin(data)
-        //                 navigate('success');
-        //             }
-        //         }else if(response.status === 401){
-        //             console.log(401)
-        //             setMessage(data.message)
-        //         }
-        //     })
-    })
+            })
     }
 
     useEffect(() => {
@@ -92,10 +43,6 @@ function LoginForm(props) {
                     }
                 } onSubmit={
                 async (values) => {
-                    // await postData("api/users/login", values)
-                    //     .then(() => {
-                    //         navigate('/');
-                    //     })
                     await handleSubmit(values);
                 }
             }

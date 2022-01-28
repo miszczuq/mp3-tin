@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 import "../../locales/i18n"
-import {getLapApiCall} from "../../apiCalls/lapApiCalls";
 import TableContent from "../table/tableContent";
 import ListTable from "../table/listTable";
 import {deleteData} from "../../apiCalls/deleteData";
 import {Link} from "react-router-dom";
 import {getData} from "../../apiCalls/getData";
-import {isAdmin, isAuthenticated} from "../../helpers/authHelper";
+import {isAdmin} from "../../helpers/authHelper";
 
 const LapList = () => {
     const {t} = useTranslation();
@@ -38,11 +37,6 @@ const LapList = () => {
             deleteData(params.parentRoute, recordId).then(() => {
                 setIsDeleted(!isDeleted);
             })
-        }
-    }
-    const handleButtons = () => {
-        if (!isAdmin()) {
-            alert("You have no permision to do this");
         }
     }
 
